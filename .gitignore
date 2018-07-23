@@ -1,0 +1,41 @@
+/target/
+.svn/
+!.mvn/wrapper/maven-wrapper.jar
+## eclipse
+.settings/
+bin/
+.project
+.classpath
+.metadata
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+*.launch
+*.pydevproject
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+out/
+*.iml
+*.ipr
+*.iws
+.idea/
+classes/
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/

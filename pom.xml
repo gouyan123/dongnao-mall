@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.dongnaoedu</groupId>
+	<artifactId>dongnao-mall</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<packaging>pom</packaging>
+
+	<name>dongnao-mall</name>
+	<description>电商项目实战</description>
+	<url>gitlab地址</url>
+
+	<modules>
+		<module>mall-parent</module>
+		<module>mall-common</module>
+		<module>mall-content</module>
+		<module>mall-sso</module>
+		<module>mall-search</module>
+		<module>mall-manager</module>
+		<module>mall-front-web</module>
+		<module>mall-manager-web</module>
+		<module>mall-generator</module>
+	</modules>
+	
+	<!-- license -->
+    <licenses>
+    	<license>
+    		<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+    	</license>
+    </licenses>
+    
+    <organization>
+        <name>dongnaoedu</name>
+        <url>http://www.dongnaoedu.com/</url>
+    </organization>
+
+    <scm></scm>
+    
+    <issueManagement>
+        <system>gitlab</system>
+        <url>https://xxx.com/apache/project/issues</url>
+    </issueManagement>
+    
+	<developers>
+		<developer>
+			<name>dongnao mall</name>
+			<email>dev@dognnaoedu.com</email>
+			<organization>动脑学院</organization>
+			<organizationUrl>https://www.dongnaoedu.com/</organizationUrl>
+		</developer>
+	</developers>
+
+</project>
