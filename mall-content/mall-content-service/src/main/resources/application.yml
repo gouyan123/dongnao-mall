@@ -1,10 +1,10 @@
 server:
   port: 8081
 
-logging:
-  level:
-    root: debug
-    org.springframework: info
+#logging:
+#  level:
+#    root: debug
+#    org.springframework: info
     
 spring:
   activemq:
