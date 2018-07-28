@@ -1,4 +1,4 @@
-package com.dongnao.mall.front.interceptor;
+package com.dongnaoedu.mall.front.interceptor;
 
 import java.lang.reflect.Method;
 
@@ -12,11 +12,11 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.dongnao.mall.front.limit.RedisRaterLimiter;
 import com.dongnaoedu.mall.common.annotation.RateLimiter;
 import com.dongnaoedu.mall.common.constant.CommonConstant;
 import com.dongnaoedu.mall.common.exception.XmallException;
 import com.dongnaoedu.mall.common.utils.IPInfoUtil;
+import com.dongnaoedu.mall.front.limit.RedisRaterLimiter;
 
 import cn.hutool.core.util.StrUtil;
 

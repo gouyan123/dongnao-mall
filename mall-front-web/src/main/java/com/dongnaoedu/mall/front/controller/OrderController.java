@@ -1,4 +1,4 @@
-package com.dongnao.mall.front.controller;
+package com.dongnaoedu.mall.front.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

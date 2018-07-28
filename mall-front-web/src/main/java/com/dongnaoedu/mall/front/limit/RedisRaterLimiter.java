@@ -1,4 +1,4 @@
-package com.dongnao.mall.front.limit;
+package com.dongnaoedu.mall.front.limit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ import java.util.UUID;
 @Component
 public class RedisRaterLimiter {
 
-    final static Logger log= LoggerFactory.getLogger(RedisRaterLimiter.class);
+    private final static Logger log= LoggerFactory.getLogger(RedisRaterLimiter.class);
 
     @Autowired
     private JedisPool jedisPool;

@@ -1,4 +1,4 @@
-package com.dongnao.mall.front.exception;
+package com.dongnaoedu.mall.front.exception;
 
 import java.net.BindException;
 

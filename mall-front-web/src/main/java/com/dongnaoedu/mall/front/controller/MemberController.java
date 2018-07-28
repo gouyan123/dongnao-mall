@@ -1,4 +1,4 @@
-package com.dongnao.mall.front.controller;
+package com.dongnaoedu.mall.front.controller;
 
 import java.util.HashMap;
 import java.util.UUID;

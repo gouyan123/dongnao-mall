@@ -1,4 +1,4 @@
-package com.dongnao.mall.front.config;
+package com.dongnaoedu.mall.front.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;

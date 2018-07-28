@@ -1,4 +1,4 @@
-package com.dongnao.mall.front.interceptor;
+package com.dongnaoedu.mall.front.interceptor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

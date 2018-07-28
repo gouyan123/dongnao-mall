@@ -1,4 +1,4 @@
-package com.dongnao.mall.front.controller;
+package com.dongnaoedu.mall.front.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
