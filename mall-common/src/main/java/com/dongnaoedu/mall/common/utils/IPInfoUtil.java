@@ -18,7 +18,7 @@ public class IPInfoUtil {
     /**
      * Mob全国天气预报接口
      */
-    private final static String GET_WEATHER="http://apicloud.mob.com/v1/weather/ip?key=appkey&ip=";
+    private final static String GET_WEATHER="http://apicloud.mob.com/v1/weather/ip?key=270c4d225bcf0&ip=";
 
     /**
      * 获取客户端IP地址
