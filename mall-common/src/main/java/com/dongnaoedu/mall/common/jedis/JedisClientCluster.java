@@ -2,6 +2,7 @@ package com.dongnaoedu.mall.common.jedis;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import redis.clients.jedis.JedisCluster;
@@ -14,6 +15,7 @@ import redis.clients.jedis.JedisCluster;
 //@Service("jedisClientCluster")
 public class JedisClientCluster implements JedisClient {
 
+	@Autowired
 	private JedisCluster jedisCluster;
 
 	public JedisCluster getJedisCluster() {
