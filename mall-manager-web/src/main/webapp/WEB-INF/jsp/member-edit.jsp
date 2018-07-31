@@ -25,7 +25,7 @@
     <![endif]-->
     <!--/meta 作为公共模版分离出去-->
 
-    <title>添加用户 - H-ui.admin v3.1</title>
+    <title>修改用户 - H-ui.admin v3.1</title>
 </head>
 <body>
 <article class="page-container">
@@ -34,7 +34,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
+                <input type="text" class="input-text" disabled="disabled" value="" placeholder="" id="username" name="username">
             </div>
         </div>
         <div class="row cl">

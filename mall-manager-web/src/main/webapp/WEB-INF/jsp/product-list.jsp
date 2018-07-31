@@ -92,7 +92,7 @@
         var images= new Array(); //定义一数组
         images=data.split(","); //字符分割
         if(images.length>0){
-            return images[0];
+            return '${fdfsUrl}' + images[0];
         }else{
             return data;
         }
