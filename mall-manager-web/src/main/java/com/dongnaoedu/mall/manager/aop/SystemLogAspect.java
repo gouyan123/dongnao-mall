@@ -39,7 +39,7 @@ public class SystemLogAspect {
 
 	private static final ThreadLocal<Date> beginTimeThreadLocal = new NamedThreadLocal<Date>("ThreadLocal beginTime");
 
-//	@Autowired
+	@Autowired
 	private SystemService systemService;
 	
 	@Autowired(required = false)

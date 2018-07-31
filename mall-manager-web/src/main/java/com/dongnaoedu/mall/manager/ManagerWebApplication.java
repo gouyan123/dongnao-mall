@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-@ComponentScan(value = {"com.dongnaoedu.mall.common.jedis", "com.dongnaoedu.mall.manager"})
+@ComponentScan(value = {"com.dongnaoedu.mall"})
 public class ManagerWebApplication extends SpringBootServletInitializer {
 	
 	@Override

@@ -1,4 +1,8 @@
 server:
+  servlet:
+    jsp:
+      init-parameters:
+        development: true
   port: 8888
   tomcat:
     uri-encoding: UTF-8
@@ -66,3 +70,6 @@ spring:
 #      master: 
 #      nodes:
 #      - 
+
+# fastdfs文件服务器地址
+fdfs_url: http://192.168.100.102/
