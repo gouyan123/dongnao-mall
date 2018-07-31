@@ -9,7 +9,6 @@ import javax.jms.Destination;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dongnaoedu.mall.common.exception.XmallException;
 import com.dongnaoedu.mall.common.jedis.JedisClient;
-import com.dongnaoedu.mall.common.jedis.JedisClientPool;
 import com.dongnaoedu.mall.common.pojo.DataTablesResult;
 import com.dongnaoedu.mall.common.utils.IDUtil;
 import com.dongnaoedu.mall.manager.dto.DtoUtil;
@@ -71,7 +69,7 @@ public class ItemServiceImpl implements ItemService {
 		itemDto.setCname(tbItemCat.getName());
 
 		TbItemDesc tbItemDesc = tbItemDescMapper.selectByPrimaryKey(id);
-		itemDto.setDetail(tbItemDesc.getItemDesc());
+		itemDto.setDetail(tbItemDesc != null ? tbItemDesc.getItemDesc() : "");
 
 		return itemDto;
 	}

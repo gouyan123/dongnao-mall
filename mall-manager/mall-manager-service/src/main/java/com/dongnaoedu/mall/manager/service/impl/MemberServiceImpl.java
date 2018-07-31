@@ -294,12 +294,14 @@ public class MemberServiceImpl implements MemberService {
 	public TbMember getMemberByEditEmail(Long id, String email) {
 
 		TbMember tbMember = getMemberById(id);
-		TbMember newTbMember = null;
+		//TbMember newTbMember = null;
 		if (tbMember.getEmail() == null || !tbMember.getEmail().equals(email)) {
-			newTbMember = getMemberByEmail(email);
+			//newTbMember = getMemberByEmail(email);
+			tbMember = getMemberByEmail(email);
 		}
-		newTbMember.setPassword("");
-		return newTbMember;
+		//newTbMember.setPassword("");
+		//return newTbMember;
+		return tbMember;
 	}
 
 	@Override
@@ -307,12 +309,14 @@ public class MemberServiceImpl implements MemberService {
 	public TbMember getMemberByEditPhone(Long id, String phone) {
 
 		TbMember tbMember = getMemberById(id);
-		TbMember newTbMember = null;
+		//TbMember newTbMember = null;
 		if (tbMember.getPhone() == null || !tbMember.getPhone().equals(phone)) {
-			newTbMember = getMemberByPhone(phone);
+			//newTbMember = getMemberByPhone(phone);
+			tbMember = getMemberByPhone(phone);
 		}
-		newTbMember.setPassword("");
-		return newTbMember;
+		//newTbMember.setPassword("");
+		//return newTbMember;
+		return tbMember;
 	}
 
 	@Override
@@ -320,11 +324,13 @@ public class MemberServiceImpl implements MemberService {
 	public TbMember getMemberByEditUsername(Long id, String username) {
 
 		TbMember tbMember = getMemberById(id);
-		TbMember newTbMember = null;
+		//TbMember newTbMember = null;
 		if (tbMember.getUsername() == null || !tbMember.getUsername().equals(username)) {
-			newTbMember = getMemberByUsername(username);
+			//newTbMember = getMemberByUsername(username);
+			tbMember = getMemberByUsername(username);
 		}
-		newTbMember.setPassword("");
-		return newTbMember;
+		//newTbMember.setPassword("");
+		//return newTbMember;
+		return tbMember;
 	}
 }
