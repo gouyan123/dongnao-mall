@@ -65,18 +65,17 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- Spring Boot 热加载 -->
+		<!-- Spring Boot 热加载
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency> -->
 		
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo-serialization-kryo</artifactId>
 		</dependency>
-
 		<!-- Dubbo -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
