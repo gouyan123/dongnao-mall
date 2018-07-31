@@ -81,6 +81,7 @@ public class IPInfoUtil {
             String result="未知";
             try{
                 IpWeatherResult weather=new Gson().fromJson(json,IpWeatherResult.class);
+                if (weather.getResult() == null) return result;
                 result=weather.getResult().get(0).getCity()+" "+weather.getResult().get(0).getDistrct();
             }catch (Exception e){
                 e.printStackTrace();
