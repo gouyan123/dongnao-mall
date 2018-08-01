@@ -12,6 +12,6 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:dubbo.properties")
 @ImportResource({ "classpath:dubbo/*.xml" })
-public class PropertiesConfig {
+public class DubboConfig {
 
 }
