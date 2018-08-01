@@ -85,7 +85,6 @@
 		<hutool.version>4.0.5</hutool.version>
 
 		<!--指定了版本范围，每次会尝试去下载最新版本 -->
-		<qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
 		<elasticsearch.version>6.2.3</elasticsearch.version>
 		<joda-time.version>2.9.9</joda-time.version>
 		<jstl.version>1.2</jstl.version>
@@ -97,6 +96,7 @@
 		<commons-net.version>3.5</commons-net.version>
 		<httpclient.version>4.5.3</httpclient.version>
 		<json.version>20171018</json.version>
+		<gson.version>2.8.5</gson.version>
 		<slf4j.version>1.7.25</slf4j.version>
 	
 		<shiro.version>1.4.0</shiro.version>
@@ -112,7 +112,7 @@
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
 		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-		
+		<dockerfile-plugin-version>1.4.0</dockerfile-plugin-version>
 	</properties>
 
 	<!-- 依赖管理 -->
@@ -226,12 +226,6 @@
 				<version>${jsp-api.version}</version>
 				<scope>provided</scope>
 			</dependency>
-			<!-- 七牛云图片上传SDK -->
-			<dependency>
-				<groupId>com.qiniu</groupId>
-				<artifactId>qiniu-java-sdk</artifactId>
-				<version>${qiniu.version}</version>
-			</dependency>
 			<!-- Hutool工具包 -->
 			<dependency>
 				<groupId>cn.hutool</groupId>
@@ -243,6 +237,12 @@
 				<groupId>org.json</groupId>
 				<artifactId>json</artifactId>
 				<version>${json.version}</version>
+			</dependency>
+			<!-- gson -->
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>${gson.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -346,15 +346,18 @@
 	</dependencyManagement>
 
 	<build>
-		<plugins>
+		<!-- docker 依赖管理 -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.spotify</groupId>
+					<artifactId>dockerfile-maven-plugin</artifactId>
+					<version>${dockerfile-plugin-version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		
-			<!-- docker支持 -->
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.4.13</version>
-			</plugin>
-			
+		<plugins>
 			<!-- 编译插件 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -434,7 +437,6 @@
 					<goals>deploy</goals>
 				</configuration>
 			</plugin> -->
-			 
 		</plugins>
 	</build>
 
