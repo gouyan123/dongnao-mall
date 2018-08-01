@@ -26,7 +26,7 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private TbMemberMapper tbMemberMapper;
 	@Autowired
-	private JedisClient jedisClient;
+	private JedisClient jedisClientPool;
 	@Value("${SESSION_EXPIRE}")
 	private Integer SESSION_EXPIRE;
 
@@ -57,8 +57,8 @@ public class LoginServiceImpl implements LoginService {
 		member.setToken(token);
 		member.setState(1);
 		// 用户信息写入redis：key："SESSION:token" value："user"
-		jedisClient.set("SESSION:" + token, new Gson().toJson(member));
-		jedisClient.expire("SESSION:" + token, SESSION_EXPIRE);
+		jedisClientPool.set("SESSION:" + token, new Gson().toJson(member));
+		jedisClientPool.expire("SESSION:" + token, SESSION_EXPIRE);
 
 		return member;
 	}
@@ -66,7 +66,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Member getUserByToken(String token) {
 
-		String json = jedisClient.get("SESSION:" + token);
+		String json = jedisClientPool.get("SESSION:" + token);
 		if (json == null) {
 			Member member = new Member();
 			member.setState(0);
@@ -74,7 +74,7 @@ public class LoginServiceImpl implements LoginService {
 			return member;
 		}
 		// 重置过期时间
-		jedisClient.expire("SESSION:" + token, SESSION_EXPIRE);
+		jedisClientPool.expire("SESSION:" + token, SESSION_EXPIRE);
 		Member member = new Gson().fromJson(json, Member.class);
 		return member;
 	}
@@ -82,7 +82,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public int logout(String token) {
 
-		jedisClient.del("SESSION:" + token);
+		jedisClientPool.del("SESSION:" + token);
 		return 1;
 	}
 

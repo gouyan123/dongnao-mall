@@ -15,7 +15,7 @@ import com.alibaba.dubbo.container.Main;
 @SpringBootApplication
 @EnableTransactionManagement
 //@EnableScheduling
-@ComponentScan(basePackages = {"com.dongnaoedu.mall"})
+@ComponentScan(basePackages = {"com.dongnaoedu.mall.common.jedis", "com.dongnaoedu.mall.sso"})
 @MapperScan(basePackages = "com.dongnaoedu.mall.manager.mapper")
 public class SsoApplication {
 

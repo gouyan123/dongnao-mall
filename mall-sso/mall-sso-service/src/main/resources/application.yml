@@ -78,7 +78,6 @@ pagehelper:
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
-    
 
 #用户登录过期时间30分钟
 SESSION_EXPIRE: 1800
