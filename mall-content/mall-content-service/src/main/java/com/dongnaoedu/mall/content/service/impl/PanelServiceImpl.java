@@ -7,13 +7,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.dongnaoedu.mall.common.exception.XmallException;
 import com.dongnaoedu.mall.common.jedis.JedisClient;
 import com.dongnaoedu.mall.common.pojo.ZTreeNode;
 import com.dongnaoedu.mall.content.service.PanelService;
+import com.dongnaoedu.mall.content.service.bean.ContentBean;
 import com.dongnaoedu.mall.manager.dto.DtoUtil;
 import com.dongnaoedu.mall.manager.mapper.TbPanelMapper;
 import com.dongnaoedu.mall.manager.pojo.TbPanel;
@@ -31,8 +31,11 @@ public class PanelServiceImpl implements PanelService {
 	@Autowired
 	private JedisClient jedisClient;
 
-	@Value("${PRODUCT_HOME}")
-	private String PRODUCT_HOME;
+    // 注入配置中心bean
+    @Autowired
+    private ContentBean contentBean;
+//	@Value("${PRODUCT_HOME}")
+//	private String PRODUCT_HOME;
 
 	@Override
 	public TbPanel getTbPanelById(int id) {
@@ -126,7 +129,8 @@ public class PanelServiceImpl implements PanelService {
 	 */
 	public void deleteHomeRedis() {
 		try {
-			jedisClient.del(PRODUCT_HOME);
+			jedisClient.del(contentBean.getPRODUCT_HOME());
+			log.info("同步首页缓存 删除：{} " + contentBean.getPRODUCT_HOME());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

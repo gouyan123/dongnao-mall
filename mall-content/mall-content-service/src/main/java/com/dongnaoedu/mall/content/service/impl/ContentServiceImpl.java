@@ -8,13 +8,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.dongnaoedu.mall.common.exception.XmallException;
 import com.dongnaoedu.mall.common.jedis.JedisClient;
 import com.dongnaoedu.mall.common.pojo.DataTablesResult;
 import com.dongnaoedu.mall.content.service.ContentService;
+import com.dongnaoedu.mall.content.service.bean.ContentBean;
 import com.dongnaoedu.mall.manager.dto.DtoUtil;
 import com.dongnaoedu.mall.manager.dto.front.AllGoodsResult;
 import com.dongnaoedu.mall.manager.dto.front.Product;
@@ -53,6 +53,11 @@ public class ContentServiceImpl implements ContentService {
     @Autowired
     private JedisClient jedisClient;
 
+    // 注入配置中心bean
+    @Autowired
+    private ContentBean contentBean;
+    
+/*  配置迁移到apollo配置中心
     @Value("${PRODUCT_HOME}")
     private String PRODUCT_HOME;
 
@@ -79,7 +84,8 @@ public class ContentServiceImpl implements ContentService {
 
     @Value("${HEADER_PANEL}")
     private String HEADER_PANEL;
-
+*/
+    
     @Override
     public int addPanelContent(TbPanelContent tbPanelContent) {
 
@@ -89,7 +95,7 @@ public class ContentServiceImpl implements ContentService {
             throw new XmallException("添加首页板块内容失败");
         }
         //同步导航栏缓存
-        if(tbPanelContent.getPanelId()==HEADER_PANEL_ID){
+        if(tbPanelContent.getPanelId()==contentBean.getHEADER_PANEL_ID()){
             updateNavListRedis();
         }
         //同步缓存
@@ -128,7 +134,7 @@ public class ContentServiceImpl implements ContentService {
             throw new XmallException("删除首页板块失败");
         }
         //同步导航栏缓存
-        if(id==HEADER_PANEL_ID){
+        if(id==contentBean.getHEADER_PANEL_ID()){
             updateNavListRedis();
         }
         //同步缓存
@@ -155,7 +161,7 @@ public class ContentServiceImpl implements ContentService {
             throw new XmallException("更新板块内容失败");
         }
         //同步导航栏缓存
-        if(tbPanelContent.getPanelId()==HEADER_PANEL_ID){
+        if(tbPanelContent.getPanelId() == contentBean.getHEADER_PANEL_ID()){
             updateNavListRedis();
         }
         //同步缓存
@@ -181,7 +187,7 @@ public class ContentServiceImpl implements ContentService {
         //查询缓存
         try{
             //有缓存则读取
-            String json=jedisClient.get(PRODUCT_HOME);
+            String json=jedisClient.get(contentBean.getPRODUCT_HOME());
             if(json!=null){
                 list = new Gson().fromJson(json, new TypeToken<List<TbPanel>>(){}.getType());
                 log.info("读取了首页缓存");
@@ -220,7 +226,7 @@ public class ContentServiceImpl implements ContentService {
 
         //把结果添加至缓存
         try{
-            jedisClient.set(PRODUCT_HOME, new Gson().toJson(list));
+            jedisClient.set(contentBean.getPRODUCT_HOME(), new Gson().toJson(list));
             log.info("添加了首页缓存");
         }catch (Exception e){
             e.printStackTrace();
@@ -236,7 +242,7 @@ public class ContentServiceImpl implements ContentService {
         //查询缓存
         try{
             //有缓存则读取
-            String json=jedisClient.get(RECOMEED_PANEL);
+            String json=jedisClient.get(contentBean.getRECOMEED_PANEL());
             if(json!=null){
                 list = new Gson().fromJson(json, new TypeToken<List<TbPanel>>(){}.getType());
                 log.info("读取了推荐板块缓存");
@@ -245,10 +251,10 @@ public class ContentServiceImpl implements ContentService {
         }catch (Exception e){
             e.printStackTrace();
         }
-        list = getTbPanelAndContentsById(RECOMEED_PANEL_ID);
+        list = getTbPanelAndContentsById(contentBean.getRECOMEED_PANEL_ID());
         //把结果添加至缓存
         try{
-            jedisClient.set(RECOMEED_PANEL, new Gson().toJson(list));
+            jedisClient.set(contentBean.getRECOMEED_PANEL(), new Gson().toJson(list));
             log.info("添加了推荐板块缓存");
         }catch (Exception e){
             e.printStackTrace();
@@ -263,7 +269,7 @@ public class ContentServiceImpl implements ContentService {
         //查询缓存
         try{
             //有缓存则读取
-            String json=jedisClient.get(THANK_PANEL);
+            String json=jedisClient.get(contentBean.getTHANK_PANEL());
             if(json!=null){
                 list = new Gson().fromJson(json, new TypeToken<List<TbPanel>>(){}.getType());
                 log.info("读取了捐赠板块缓存");
@@ -272,10 +278,10 @@ public class ContentServiceImpl implements ContentService {
         }catch (Exception e){
             e.printStackTrace();
         }
-        list = getTbPanelAndContentsById(THANK_PANEL_ID);
+        list = getTbPanelAndContentsById(contentBean.getTHANK_PANEL_ID());
         //把结果添加至缓存
         try{
-            jedisClient.set(THANK_PANEL, new Gson().toJson(list));
+            jedisClient.set(contentBean.getTHANK_PANEL(), new Gson().toJson(list));
             log.info("添加了捐赠板块缓存");
         }catch (Exception e){
             e.printStackTrace();
@@ -319,12 +325,12 @@ public class ContentServiceImpl implements ContentService {
         //查询缓存
         try{
             //有缓存则读取
-            String json=jedisClient.get(PRODUCT_ITEM+":"+id);
+            String json=jedisClient.get(contentBean.getPRODUCT_ITEM() + ":"+id);
             if(json!=null){
                 ProductDet productDet= new Gson().fromJson(json,ProductDet.class);
                 log.info("读取了商品"+id+"详情缓存");
                 //重置商品缓存时间
-                jedisClient.expire(PRODUCT_ITEM+":"+id,ITEM_EXPIRE);
+                jedisClient.expire(contentBean.getPRODUCT_ITEM()+":"+id, contentBean.getITEM_EXPIRE());
                 return productDet;
             }
         }catch (Exception e){
@@ -346,20 +352,20 @@ public class ContentServiceImpl implements ContentService {
         TbItemDesc tbItemDesc=tbItemDescMapper.selectByPrimaryKey(id);
         productDet.setDetail(tbItemDesc.getItemDesc());
 
-        if(tbItem.getImage()!=null&&!tbItem.getImage().isEmpty()){
-            String images[]=tbItem.getImage().split(",");
-            productDet.setProductImageBig(images[0]);
-            List list=new ArrayList();
-            for(int i=0;i<images.length;i++){
-                list.add(images[i]);
-            }
-            productDet.setProductImageSmall(list);
-        }
+		if (tbItem.getImage() != null && !tbItem.getImage().isEmpty()) {
+			String images[] = tbItem.getImage().split(",");
+			productDet.setProductImageBig(images[0]);
+			List<String> list = new ArrayList<>();
+			for (int i = 0; i < images.length; i++) {
+				list.add(images[i]);
+			}
+			productDet.setProductImageSmall(list);
+		}
         //无缓存 把结果添加至缓存
         try{
-            jedisClient.set(PRODUCT_ITEM+":"+id,new Gson().toJson(productDet));
+            jedisClient.set(contentBean.getPRODUCT_ITEM()+":"+id,new Gson().toJson(productDet));
             //设置过期时间
-            jedisClient.expire(PRODUCT_ITEM+":"+id,ITEM_EXPIRE);
+            jedisClient.expire(contentBean.getPRODUCT_ITEM()+":"+id,contentBean.getITEM_EXPIRE());
             log.info("添加了商品"+id+"详情缓存");
         }catch (Exception e){
             e.printStackTrace();
@@ -410,7 +416,7 @@ public class ContentServiceImpl implements ContentService {
     public String getIndexRedis() {
 
         try{
-            String json=jedisClient.get(PRODUCT_HOME);
+            String json=jedisClient.get(contentBean.getPRODUCT_HOME());
             return json;
         }catch (Exception e){
             log.error(e.toString());
@@ -429,7 +435,7 @@ public class ContentServiceImpl implements ContentService {
     public String getRecommendRedis() {
 
         try{
-            String json=jedisClient.get(RECOMEED_PANEL);
+            String json=jedisClient.get(contentBean.getRECOMEED_PANEL());
             return json;
         }catch (Exception e){
             log.error(e.toString());
@@ -441,7 +447,7 @@ public class ContentServiceImpl implements ContentService {
     public int updateRecommendRedis() {
 
         try {
-            jedisClient.del(RECOMEED_PANEL);
+            jedisClient.del(contentBean.getRECOMEED_PANEL());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -452,7 +458,7 @@ public class ContentServiceImpl implements ContentService {
     public String getThankRedis() {
 
         try{
-            String json=jedisClient.get(THANK_PANEL);
+            String json=jedisClient.get(contentBean.getTHANK_PANEL());
             return json;
         }catch (Exception e){
             log.error(e.toString());
@@ -464,7 +470,7 @@ public class ContentServiceImpl implements ContentService {
     public int updateThankRedis() {
 
         try {
-            jedisClient.del(THANK_PANEL);
+            jedisClient.del(contentBean.getTHANK_PANEL());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -474,7 +480,7 @@ public class ContentServiceImpl implements ContentService {
     public void updateNavListRedis() {
 
         try {
-            jedisClient.del(HEADER_PANEL);
+            jedisClient.del(contentBean.getHEADER_PANEL());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -487,7 +493,7 @@ public class ContentServiceImpl implements ContentService {
         //查询缓存
         try{
             //有缓存则读取
-            String json=jedisClient.get(HEADER_PANEL);
+            String json=jedisClient.get(contentBean.getHEADER_PANEL());
             if(json!=null){
                 list = new Gson().fromJson(json, new TypeToken<List<TbPanelContent>>(){}.getType());
                 log.info("读取了导航栏缓存");
@@ -501,12 +507,12 @@ public class ContentServiceImpl implements ContentService {
         exampleContent.setOrderByClause("sort_order");
         TbPanelContentExample.Criteria criteriaContent=exampleContent.createCriteria();
         //条件查询
-        criteriaContent.andPanelIdEqualTo(HEADER_PANEL_ID);
+        criteriaContent.andPanelIdEqualTo(contentBean.getHEADER_PANEL_ID());
         list=tbPanelContentMapper.selectByExample(exampleContent);
 
         //把结果添加至缓存
         try{
-            jedisClient.set(HEADER_PANEL, new Gson().toJson(list));
+            jedisClient.set(contentBean.getHEADER_PANEL(), new Gson().toJson(list));
             log.info("添加了导航栏缓存");
         }catch (Exception e){
             e.printStackTrace();
@@ -520,7 +526,7 @@ public class ContentServiceImpl implements ContentService {
      */
     public void deleteHomeRedis(){
         try {
-            jedisClient.del(PRODUCT_HOME);
+            jedisClient.del(contentBean.getPRODUCT_HOME());
         }catch (Exception e){
             e.printStackTrace();
         }
