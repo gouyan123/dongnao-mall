@@ -19,6 +19,9 @@ public class Product implements Serializable {
 
 	private String productImageBig;
 
+	// 类别
+	private Long cid;
+
 	public Long getProductId() {
 		return productId;
 	}
@@ -57,5 +60,13 @@ public class Product implements Serializable {
 
 	public void setProductImageBig(String productImageBig) {
 		this.productImageBig = productImageBig;
+	}
+
+	public Long getCid() {
+		return cid;
+	}
+
+	public void setCid(Long cid) {
+		this.cid = cid;
 	}
 }

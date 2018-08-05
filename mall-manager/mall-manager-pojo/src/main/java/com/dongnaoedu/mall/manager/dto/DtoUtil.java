@@ -125,7 +125,8 @@ public class DtoUtil {
 		product.setSalePrice(tbItem.getPrice());
 		product.setSubTitle(tbItem.getSellPoint());
 		product.setProductImageBig(tbItem.getImages()[0]);
-
+		product.setCid(tbItem.getCid());
+		
 		return product;
 	}
 

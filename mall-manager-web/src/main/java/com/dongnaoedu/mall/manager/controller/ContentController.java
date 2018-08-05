@@ -62,7 +62,7 @@ public class ContentController {
 	@RequestMapping(value = "/content/del/{ids}", method = RequestMethod.DELETE)
 	@ApiOperation(value = "删除板块内容")
 	@ApiImplicitParam(name = "ids", value = "用户id列表", required = true, dataType = "int")
-	public Result<Object> addContent(@RequestParam(required = true) @PathVariable int[] ids) {
+	public Result<Object> addContent(@PathVariable int[] ids) {
 
 		for (int id : ids) {
 			contentService.deletePanelContent(id);
