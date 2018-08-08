@@ -10,9 +10,19 @@ import java.util.Random;
 public class IDUtil {
 
     /**
-     * 随机id生成
+     * 随机id生成，使用雪花算法
      */
     public static long getRandomId() {
+        SnowflakeIdWorker sf = new SnowflakeIdWorker();
+        long id = sf.nextId();
+        return id;
+    }
+	
+    /**
+     * 随机id生成，时间戳加上两位随机数，不能应对高并发
+     */
+    @Deprecated
+    public static long getRandomId(int old) {
         long millis = System.currentTimeMillis();
         //加上两位随机数
         Random random = new Random();
@@ -22,6 +32,6 @@ public class IDUtil {
         long id = new Long(str);
         return id;
     }
-
+    
 }
 
