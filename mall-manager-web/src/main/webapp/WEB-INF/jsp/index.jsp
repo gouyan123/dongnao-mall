@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="Bookmark" href="favicon.ico" >
-    <link rel="Shortcut Icon" href="icon/x.png" />
+    <link rel="Shortcut Icon" href="icon/favicon.ico" />
     <!--[if lt IE 9]>
     <script type="text/javascript" src="lib/html5shiv.js"></script>
     <script type="text/javascript" src="lib/respond.min.js"></script>
@@ -22,15 +22,16 @@
     <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>XMall后台管理系统 v1.1</title>
-    <meta name="keywords" content="XMall后台管理系统 v1.1,XMall,XMall购物商城后台管理系统">
-    <meta name="description" content="XMall后台管理系统 v1.1，是一款电商后台管理系统，适合中小型CMS后台系统。">
+    <title>电商后台管理系统</title>
+    <meta name="keywords" content="电商后台管理系统，购物商城后台管理系统">
+    <meta name="description" content="电商后台管理系统，是一款电商后台管理系统。">
 </head>
 <body>
 <header class="navbar-wrapper">
     <div class="navbar navbar-fixed-top">
-        <div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/">XMall后台管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/">XMall后台管理系统</a>
-            <span class="logo navbar-slogan f-l mr-10 hidden-xs">v1.1</span>
+        <div class="container-fluid cl"> 
+        	<a class="logo navbar-logo f-l mr-10 hidden-xs" href="/">电商后台管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/">电商后台管理系统</a>
+            <span class="logo navbar-slogan f-l mr-10 hidden-xs"></span>
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
             <nav class="nav navbar-nav">
                 <ul class="cl">
