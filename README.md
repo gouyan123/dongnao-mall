@@ -96,23 +96,23 @@
 
 
 ## 任务管理器
-![20170320148998292034786.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/任务管理器.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/任务管理器.png)
 
-> 启动了 5 台虚拟机＋ 7 台 Tomcat ＋ 9 个 Dubbox 服务 内存使用情况
+> 启动了 2 个 Tomcat 容器 ＋ 4 个 Dubbo service 服务 内存使用情况，算上虚拟机中安装的环境预计单机需要16G内存运行整个项目环境
 
 
 ## 本地开发运行部署
-- 下载zip直接解压或安装git后执行克隆命令 `git clone https://github.com/Exrick/xmall.git`
-- 安装各中间件并启动：[ZooKeeper](https://github.com/Exrick/xmall/blob/master/study/Zookeeper.md)、[Redis](https://github.com/Exrick/xmall/blob/master/study/Redis.md)、[ActiveMQ](https://github.com/Exrick/xmall/blob/master/study/ActiveMQ.md)、[Elasticsearch](https://github.com/Exrick/xmall/blob/master/study/Elasticsearch.md)
-- 修改各配置文件相应依赖IP配置(默认本地127.0.0.1)，以及七牛云、极验配置、天气接口在 `xmall-common - utils` 中找到修改，XPay邮箱配置在 `manager-service与sso-service` 中
-- [Maven安装和在IDEA中配置](https://github.com/Exrick/xmall/blob/master/study/Maven.md)
-- 使用IDEA([破解/免费注册](http://idea.lanyus.com/)) `File-Open` 直接打开xmall项目，点击右下角 `Import Changes` 等待安装完依赖即可
-- MySQL数据库新建 `xmall` 数据库，运行sql文件，注意在有 `db.properties` 的模块中修改你的数据库连接配置
-- 按照依赖顺序分别在每个模块文件夹根目录执行 `mvn install` 命令
-- 项目需运行除 `xmall-parent` `xmall-common` 以外其它所有6个服务，且都已配置好Tomcat插件, 执行命令 `mvn tomcat7:run` 或在IDEA中使用插件(`View - Tool Buttons - 右侧菜单Maven Projects - tomcat7 - tomcat7:run`)运行即可，当然可自行配置
-- 后端管理系统默认端口8888 http://localhost:8888 管理员账密admin|123456
-- 前端项目接口默认端口7777 前台页面请启动基于Vue的 [xmall-front](https://github.com/Exrick/xmall-front) 项目，并修改其接口配置
-- 
+- 下载zip直接解压或安装git后执行克隆命令 `git clone http://code.dongnaoedu.com/allen/dongnao-mall.git`
+- 安装各中间件并启动：ZooKeeper、Redis、ActiveMQ、Elasticsearch
+- 修改各配置文件相应依赖IP配置(默认本地127.0.0.1)，XPay邮箱配置在 `manager-service与sso-service` 中
+- Maven安装和在IDEA中配置，nexus3 配置
+- 使用ide导入源码，第一次导入后等待下载jar包
+- MySQL数据库新建数据库，运行sql文件，注意在有 `application.yml` 的模块中修改你的数据库连接配置
+- 先在父项目中执行`mvn install`，以后对子项目的修改可以单独在子模块执行
+- 项目需运行除 `mall-parent` `mall-common` 以外其它所有6个服务，都可以使用spring boot的启动方式启动项目
+- 后端管理系统默认端口8888 http://localhost:8888 管理员账密admin|test
+- 前端项目接口默认端口7777 前台页面请启动基于Vue的 [mall-front](http://code.dongnaoedu.com/allen/mall-front.git) 项目，并修改其接口配置
+
 
 ## 常见问题
 
