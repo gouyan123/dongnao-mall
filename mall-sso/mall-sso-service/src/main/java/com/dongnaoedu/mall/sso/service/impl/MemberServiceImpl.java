@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Base64Utils;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.fastdfs.FastDFSClient;
 import com.dongnaoedu.mall.common.fastdfs.FastDFSFile;
 import com.dongnaoedu.mall.common.jedis.JedisClient;
@@ -47,17 +47,17 @@ public class MemberServiceImpl implements MemberService {
 		
 		if (fileAbsolutePath == null) {
 			Log.error("upload file failed,please upload again!");
-			throw new XmallException("上传头像失败");
+			throw new MallException("上传头像失败");
 		}
 		String imgPath = fileAbsolutePath[0] + "/" + fileAbsolutePath[1];
 
 		TbMember tbMember = tbMemberMapper.selectByPrimaryKey(userId);
 		if (tbMember == null) {
-			throw new XmallException("通过id获取用户失败");
+			throw new MallException("通过id获取用户失败");
 		}
 		tbMember.setFile(imgPath);
 		if (tbMemberMapper.updateByPrimaryKey(tbMember) != 1) {
-			throw new XmallException("更新用户头像失败");
+			throw new MallException("更新用户头像失败");
 		}
 
 		// 更新缓存

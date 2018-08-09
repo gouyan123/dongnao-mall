@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.pojo.DataTablesResult;
 import com.dongnaoedu.mall.manager.dto.DtoUtil;
 import com.dongnaoedu.mall.manager.dto.MemberDto;
@@ -40,7 +40,7 @@ public class MemberServiceImpl implements MemberService {
 		try {
 			tbMember = tbMemberMapper.selectByPrimaryKey(memberId);
 		} catch (Exception e) {
-			throw new XmallException("ID获取会员信息失败");
+			throw new MallException("ID获取会员信息失败");
 		}
 		tbMember.setPassword("");
 		return tbMember;
@@ -70,7 +70,7 @@ public class MemberServiceImpl implements MemberService {
 			result.setDraw(draw);
 			result.setData(list);
 		} catch (Exception e) {
-			throw new XmallException("加载用户列表失败");
+			throw new MallException("加载用户列表失败");
 		}
 
 		return result;
@@ -100,7 +100,7 @@ public class MemberServiceImpl implements MemberService {
 			result.setDraw(draw);
 			result.setData(list);
 		} catch (Exception e) {
-			throw new XmallException("加载删除用户列表失败");
+			throw new MallException("加载删除用户列表失败");
 		}
 
 		return result;
@@ -117,7 +117,7 @@ public class MemberServiceImpl implements MemberService {
 		try {
 			list = tbMemberMapper.selectByExample(example);
 		} catch (Exception e) {
-			throw new XmallException("ID获取会员信息失败");
+			throw new MallException("ID获取会员信息失败");
 		}
 		if (!list.isEmpty()) {
 			list.get(0).setPassword("");
@@ -137,7 +137,7 @@ public class MemberServiceImpl implements MemberService {
 		try {
 			list = tbMemberMapper.selectByExample(example);
 		} catch (Exception e) {
-			throw new XmallException("Phone获取会员信息失败");
+			throw new MallException("Phone获取会员信息失败");
 		}
 		if (!list.isEmpty()) {
 			list.get(0).setPassword("");
@@ -157,7 +157,7 @@ public class MemberServiceImpl implements MemberService {
 		try {
 			list = tbMemberMapper.selectByExample(example);
 		} catch (Exception e) {
-			throw new XmallException("Email获取会员信息失败");
+			throw new MallException("Email获取会员信息失败");
 		}
 		if (!list.isEmpty()) {
 			list.get(0).setPassword("");
@@ -177,7 +177,7 @@ public class MemberServiceImpl implements MemberService {
 		try {
 			result.setRecordsTotal((int) tbMemberMapper.countByExample(example));
 		} catch (Exception e) {
-			throw new XmallException("统计会员数失败");
+			throw new MallException("统计会员数失败");
 		}
 
 		return result;
@@ -194,7 +194,7 @@ public class MemberServiceImpl implements MemberService {
 		try {
 			result.setRecordsTotal((int) tbMemberMapper.countByExample(example));
 		} catch (Exception e) {
-			throw new XmallException("统计移除会员数失败");
+			throw new MallException("统计移除会员数失败");
 		}
 
 		return result;
@@ -207,13 +207,13 @@ public class MemberServiceImpl implements MemberService {
 		TbMember tbMember = DtoUtil.MemberDto2Member(memberDto);
 
 		if (getMemberByUsername(tbMember.getUsername()) != null) {
-			throw new XmallException("用户名已被注册");
+			throw new MallException("用户名已被注册");
 		}
 		if (getMemberByPhone(tbMember.getPhone()) != null) {
-			throw new XmallException("手机号已被注册");
+			throw new MallException("手机号已被注册");
 		}
 		if (getMemberByEmail(tbMember.getEmail()) != null) {
-			throw new XmallException("邮箱已被注册");
+			throw new MallException("邮箱已被注册");
 		}
 
 		tbMember.setState(1);
@@ -223,7 +223,7 @@ public class MemberServiceImpl implements MemberService {
 		tbMember.setPassword(md5Pass);
 
 		if (tbMemberMapper.insert(tbMember) != 1) {
-			throw new XmallException("添加用户失败");
+			throw new MallException("添加用户失败");
 		}
 		return getMemberByPhone(tbMember.getPhone());
 	}
@@ -246,7 +246,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 		if (tbMemberMapper.updateByPrimaryKey(tbMember) != 1) {
-			throw new XmallException("更新会员信息失败");
+			throw new MallException("更新会员信息失败");
 		}
 		return getMemberById(id);
 	}
@@ -261,7 +261,7 @@ public class MemberServiceImpl implements MemberService {
 		tbMember.setUpdated(new Date());
 
 		if (tbMemberMapper.updateByPrimaryKey(tbMember) != 1) {
-			throw new XmallException("修改会员密码失败");
+			throw new MallException("修改会员密码失败");
 		}
 		return getMemberById(id);
 	}
@@ -274,7 +274,7 @@ public class MemberServiceImpl implements MemberService {
 		tbMember.setUpdated(new Date());
 
 		if (tbMemberMapper.updateByPrimaryKey(tbMember) != 1) {
-			throw new XmallException("修改会员状态失败");
+			throw new MallException("修改会员状态失败");
 		}
 		return getMemberById(id);
 	}
@@ -284,7 +284,7 @@ public class MemberServiceImpl implements MemberService {
 	public int deleteMember(Long id) {
 
 		if (tbMemberMapper.deleteByPrimaryKey(id) != 1) {
-			throw new XmallException("删除会员失败");
+			throw new MallException("删除会员失败");
 		}
 		return 0;
 	}

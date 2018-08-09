@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.manager.mapper.TbMemberMapper;
 import com.dongnaoedu.mall.manager.pojo.TbMember;
 import com.dongnaoedu.mall.manager.pojo.TbMemberExample;
@@ -68,7 +68,7 @@ public class RegisterServiceImpl implements RegisterService {
 		tbMember.setUpdated(new Date());
 
 		if (tbMemberMapper.insert(tbMember) != 1) {
-			throw new XmallException("注册用户失败");
+			throw new MallException("注册用户失败");
 		}
 		return 1;
 	}

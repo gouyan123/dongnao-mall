@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.jedis.JedisClient;
 import com.dongnaoedu.mall.common.pojo.DataTablesResult;
 import com.dongnaoedu.mall.content.service.ContentService;
@@ -92,7 +92,7 @@ public class ContentServiceImpl implements ContentService {
         tbPanelContent.setCreated(new Date());
         tbPanelContent.setUpdated(new Date());
         if(tbPanelContentMapper.insert(tbPanelContent)!=1){
-            throw new XmallException("添加首页板块内容失败");
+            throw new MallException("添加首页板块内容失败");
         }
         //同步导航栏缓存
         if(tbPanelContent.getPanelId()==contentBean.getHEADER_PANEL_ID()){
@@ -131,7 +131,7 @@ public class ContentServiceImpl implements ContentService {
     public int deletePanelContent(int id) {
 
         if(tbPanelContentMapper.deleteByPrimaryKey(id)!=1){
-            throw new XmallException("删除首页板块失败");
+            throw new MallException("删除首页板块失败");
         }
         //同步导航栏缓存
         if(id==contentBean.getHEADER_PANEL_ID()){
@@ -158,7 +158,7 @@ public class ContentServiceImpl implements ContentService {
         tbPanelContent.setCreated(old.getCreated());
         tbPanelContent.setUpdated(new Date());
         if(tbPanelContentMapper.updateByPrimaryKey(tbPanelContent)!=1){
-            throw new XmallException("更新板块内容失败");
+            throw new MallException("更新板块内容失败");
         }
         //同步导航栏缓存
         if(tbPanelContent.getPanelId() == contentBean.getHEADER_PANEL_ID()){
@@ -174,7 +174,7 @@ public class ContentServiceImpl implements ContentService {
 
         TbPanelContent tbPanelContent=tbPanelContentMapper.selectByPrimaryKey(id);
         if(tbPanelContent==null){
-            throw new XmallException("通过id获取板块内容失败");
+            throw new MallException("通过id获取板块内容失败");
         }
         return tbPanelContent;
     }

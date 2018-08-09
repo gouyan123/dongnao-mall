@@ -21,7 +21,7 @@ import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.utils.HttpUtil;
 import com.dongnaoedu.mall.manager.dto.front.SearchItem;
 import com.dongnaoedu.mall.manager.dto.front.SearchResult;
@@ -172,7 +172,7 @@ public class SearchServiceImpl implements SearchService {
 			return searchResult;
 		}catch (Exception e){
 			e.printStackTrace();
-			throw new XmallException("查询ES索引库出错");
+			throw new MallException("查询ES索引库出错");
 		}
 	}
 

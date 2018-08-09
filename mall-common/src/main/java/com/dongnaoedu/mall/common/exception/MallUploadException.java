@@ -5,12 +5,12 @@ package com.dongnaoedu.mall.common.exception;
  * 
  * @author allen
  */
-public class XmallUploadException extends RuntimeException {
+public class MallUploadException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	
 	private String msg;
 
-	public XmallUploadException(String msg) {
+	public MallUploadException(String msg) {
 		super(msg);
 	}
 

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.jedis.JedisClient;
 import com.dongnaoedu.mall.common.pojo.DataTablesResult;
 import com.dongnaoedu.mall.manager.dto.OrderDetail;
@@ -76,7 +76,7 @@ public class OrderServiceImpl implements OrderService {
 		TbOrderExample example = new TbOrderExample();
 		Long result = tbOrderMapper.countByExample(example);
 		if (result == null) {
-			throw new XmallException("统计订单数目失败");
+			throw new MallException("统计订单数目失败");
 		}
 		return result;
 	}
@@ -143,7 +143,7 @@ public class OrderServiceImpl implements OrderService {
 	public int deleteOrder(String id) {
 
 		if (tbOrderMapper.deleteByPrimaryKey(id) != 1) {
-			throw new XmallException("删除订单数失败");
+			throw new MallException("删除订单数失败");
 		}
 
 		TbOrderItemExample example = new TbOrderItemExample();
@@ -152,12 +152,12 @@ public class OrderServiceImpl implements OrderService {
 		List<TbOrderItem> list = tbOrderItemMapper.selectByExample(example);
 		for (TbOrderItem tbOrderItem : list) {
 			if (tbOrderItemMapper.deleteByPrimaryKey(tbOrderItem.getId()) != 1) {
-				throw new XmallException("删除订单商品失败");
+				throw new MallException("删除订单商品失败");
 			}
 		}
 
 		if (tbOrderShippingMapper.deleteByPrimaryKey(id) != 1) {
-			throw new XmallException("删除物流失败");
+			throw new MallException("删除物流失败");
 		}
 		return 1;
 	}
@@ -188,7 +188,7 @@ public class OrderServiceImpl implements OrderService {
 				tbOrder.setStatus(5);
 				tbOrder.setCloseTime(new Date());
 				if (tbOrderMapper.updateByPrimaryKey(tbOrder) != 1) {
-					throw new XmallException("设置订单关闭失败");
+					throw new MallException("设置订单关闭失败");
 				}
 			} else {
 				// 返回到期时间

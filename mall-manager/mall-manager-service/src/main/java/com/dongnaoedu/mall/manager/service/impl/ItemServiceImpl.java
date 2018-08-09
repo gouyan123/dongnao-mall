@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.jedis.JedisClient;
 import com.dongnaoedu.mall.common.pojo.DataTablesResult;
 import com.dongnaoedu.mall.common.utils.IDUtil;
@@ -140,7 +140,7 @@ public class ItemServiceImpl implements ItemService {
 		tbMember.setUpdated(new Date());
 
 		if (tbItemMapper.updateByPrimaryKey(tbMember) != 1) {
-			throw new XmallException("修改商品状态失败");
+			throw new MallException("修改商品状态失败");
 		}
 		return getNormalItemById(id);
 	}
@@ -150,10 +150,10 @@ public class ItemServiceImpl implements ItemService {
 	public int deleteItem(Long id) {
 
 		if (tbItemMapper.deleteByPrimaryKey(id) != 1) {
-			throw new XmallException("删除商品失败");
+			throw new MallException("删除商品失败");
 		}
 		if (tbItemDescMapper.deleteByPrimaryKey(id) != 1) {
-			throw new XmallException("删除商品详情失败");
+			throw new MallException("删除商品详情失败");
 		}
 		// 发送消息同步索引库
 		try {
@@ -177,7 +177,7 @@ public class ItemServiceImpl implements ItemService {
 			tbItem.setImage("http://ow2h3ee9w.bkt.clouddn.com/nopic.jpg");
 		}
 		if (tbItemMapper.insert(tbItem) != 1) {
-			throw new XmallException("添加商品失败");
+			throw new MallException("添加商品失败");
 		}
 
 		TbItemDesc tbItemDesc = new TbItemDesc();
@@ -187,7 +187,7 @@ public class ItemServiceImpl implements ItemService {
 		tbItemDesc.setUpdated(new Date());
 
 		if (tbItemDescMapper.insert(tbItemDesc) != 1) {
-			throw new XmallException("添加商品详情失败");
+			throw new MallException("添加商品详情失败");
 		}
 		// 发送消息同步索引库
 		try {
@@ -214,7 +214,7 @@ public class ItemServiceImpl implements ItemService {
 		tbItem.setCreated(oldTbItem.getCreated());
 		tbItem.setUpdated(new Date());
 		if (tbItemMapper.updateByPrimaryKey(tbItem) != 1) {
-			throw new XmallException("更新商品失败");
+			throw new MallException("更新商品失败");
 		}
 
 		TbItemDesc tbItemDesc = new TbItemDesc();
@@ -225,7 +225,7 @@ public class ItemServiceImpl implements ItemService {
 		tbItemDesc.setCreated(oldTbItem.getCreated());
 
 		if (tbItemDescMapper.updateByPrimaryKey(tbItemDesc) != 1) {
-			throw new XmallException("更新商品详情失败");
+			throw new MallException("更新商品详情失败");
 		}
 		// 同步缓存
 		deleteProductDetRedis(id);

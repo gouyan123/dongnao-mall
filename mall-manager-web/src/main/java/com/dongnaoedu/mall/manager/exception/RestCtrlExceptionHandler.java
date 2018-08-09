@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
-import com.dongnaoedu.mall.common.exception.XmallUploadException;
+import com.dongnaoedu.mall.common.exception.MallException;
+import com.dongnaoedu.mall.common.exception.MallUploadException;
 import com.dongnaoedu.mall.common.pojo.Result;
 import com.dongnaoedu.mall.common.utils.ResultUtil;
 
@@ -37,10 +37,10 @@ public class RestCtrlExceptionHandler {
 	}
 
 	@ResponseStatus(value = HttpStatus.OK)
-	@ExceptionHandler(XmallException.class)
+	@ExceptionHandler(MallException.class)
 	@ResponseBody
-	public Result<Object> handleXmallException(XmallException e) {
-		String errorMsg = "Xmall exception: ";
+	public Result<Object> handleMallException(MallException e) {
+		String errorMsg = "Mall exception: ";
 		if (e != null) {
 			errorMsg = e.getMsg();
 			log.warn(e.getMessage());
@@ -57,9 +57,9 @@ public class RestCtrlExceptionHandler {
 			log.warn(e.getMessage());
 			if (e.getMessage() != null && e.getMessage().contains("Maximum upload size")) {
 				errorMsg = "上传文件大小超过5MB限制";
-			} else if (e.getMessage().contains("XmallException")) {
+			} else if (e.getMessage().contains("MallException")) {
 				errorMsg = e.getMessage();
-				errorMsg = StringUtils.substringAfter(errorMsg, "XmallException:");
+				errorMsg = StringUtils.substringAfter(errorMsg, "MallException:");
 				errorMsg = StringUtils.substringBefore(errorMsg, "\n");
 			} else {
 				errorMsg = e.getMessage();
@@ -69,10 +69,10 @@ public class RestCtrlExceptionHandler {
 	}
 
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-	@ExceptionHandler(XmallUploadException.class)
+	@ExceptionHandler(MallUploadException.class)
 	@ResponseBody
-	public Result<Object> handleUploadException(XmallUploadException e) {
-		String errorMsg = "Xmall upload exception: ";
+	public Result<Object> handleUploadException(MallUploadException e) {
+		String errorMsg = "Mall upload exception: ";
 		if (e != null) {
 			errorMsg = e.getMsg();
 			log.warn(errorMsg);

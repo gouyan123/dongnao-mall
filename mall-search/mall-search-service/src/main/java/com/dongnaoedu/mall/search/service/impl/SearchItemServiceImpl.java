@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.utils.HttpUtil;
 import com.dongnaoedu.mall.manager.dto.EsCount;
 import com.dongnaoedu.mall.manager.dto.EsInfo;
@@ -94,7 +94,7 @@ public class SearchItemServiceImpl implements SearchItemService {
 			client.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new XmallException("导入ES索引库出错，请再次尝试");
+			throw new MallException("导入ES索引库出错，请再次尝试");
 		}
 
 		return 1;
@@ -108,7 +108,7 @@ public class SearchItemServiceImpl implements SearchItemService {
 		String healthResult = HttpUtil.sendGet(healthUrl);
 		String countResult = HttpUtil.sendGet(countUrl);
 		if (StringUtils.isBlank(healthResult) || StringUtils.isBlank(countResult)) {
-			throw new XmallException("连接集群失败，请检查ES运行状态");
+			throw new MallException("连接集群失败，请检查ES运行状态");
 		}
 		EsInfo esInfo = new EsInfo();
 		EsCount esCount = new EsCount();
@@ -118,7 +118,7 @@ public class SearchItemServiceImpl implements SearchItemService {
 			esInfo.setCount(esCount.getCount());
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new XmallException("获取ES信息出错");
+			throw new MallException("获取ES信息出错");
 		}
 
 		return esInfo;

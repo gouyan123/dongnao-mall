@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.pojo.DataTablesResult;
 import com.dongnaoedu.mall.manager.mapper.TbThanksMapper;
 import com.dongnaoedu.mall.manager.pojo.TbThanks;
@@ -36,7 +36,7 @@ public class ThanksServiceImpl implements ThanksService {
 		TbThanksExample example = new TbThanksExample();
 		List<TbThanks> list = tbThanksMapper.selectByExample(example);
 		if (list == null) {
-			throw new XmallException("获取捐赠列表失败");
+			throw new MallException("获取捐赠列表失败");
 		}
 		result.setSuccess(true);
 		result.setData(list);
@@ -55,7 +55,7 @@ public class ThanksServiceImpl implements ThanksService {
 		PageHelper.startPage(page, size);
 		List<TbThanks> list = tbThanksMapper.selectByExample(example);
 		if (list == null) {
-			throw new XmallException("获取捐赠列表失败");
+			throw new MallException("获取捐赠列表失败");
 		}
 		PageInfo<TbThanks> pageInfo = new PageInfo<>(list);
 
@@ -83,7 +83,7 @@ public class ThanksServiceImpl implements ThanksService {
 		TbThanksExample example = new TbThanksExample();
 		Long result = tbThanksMapper.countByExample(example);
 		if (result == null) {
-			throw new XmallException("统计捐赠数目失败");
+			throw new MallException("统计捐赠数目失败");
 		}
 		return result;
 	}
@@ -101,7 +101,7 @@ public class ThanksServiceImpl implements ThanksService {
 		}
 		tbThanks.setDate(date);
 		if (tbThanksMapper.insert(tbThanks) != 1) {
-			throw new XmallException("添加捐赠失败");
+			throw new MallException("添加捐赠失败");
 		}
 		return 1;
 	}
@@ -119,7 +119,7 @@ public class ThanksServiceImpl implements ThanksService {
 		}
 		tbThanks.setDate(date);
 		if (tbThanksMapper.updateByPrimaryKey(tbThanks) != 1) {
-			throw new XmallException("更新捐赠失败");
+			throw new MallException("更新捐赠失败");
 		}
 		return 1;
 	}
@@ -129,7 +129,7 @@ public class ThanksServiceImpl implements ThanksService {
 	public int deleteThanks(int id) {
 
 		if (tbThanksMapper.deleteByPrimaryKey(id) != 1) {
-			throw new XmallException("删除捐赠失败");
+			throw new MallException("删除捐赠失败");
 		}
 		return 1;
 	}
@@ -140,7 +140,7 @@ public class ThanksServiceImpl implements ThanksService {
 
 		TbThanks tbThanks = tbThanksMapper.selectByPrimaryKey(id);
 		if (tbThanks == null) {
-			throw new XmallException("获取捐赠数据失败");
+			throw new MallException("获取捐赠数据失败");
 		}
 		return tbThanks;
 	}

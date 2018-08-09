@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.pojo.ZTreeNode;
 import com.dongnaoedu.mall.manager.dto.DtoUtil;
 import com.dongnaoedu.mall.manager.mapper.TbItemCatMapper;
@@ -32,7 +32,7 @@ public class ItemCatServiceImpl implements ItemCatService {
 
 		TbItemCat tbItemCat = tbItemCatMapper.selectByPrimaryKey(id);
 		if (tbItemCat == null) {
-			throw new XmallException("通过id获取商品分类失败");
+			throw new MallException("通过id获取商品分类失败");
 		}
 		return tbItemCat;
 	}
@@ -79,7 +79,7 @@ public class ItemCatServiceImpl implements ItemCatService {
 		}
 
 		if (tbItemCatMapper.insert(tbItemCat) != 1) {
-			throw new XmallException("添加商品分类失败");
+			throw new MallException("添加商品分类失败");
 		}
 		return 1;
 	}
@@ -93,7 +93,7 @@ public class ItemCatServiceImpl implements ItemCatService {
 		tbItemCat.setUpdated(new Date());
 
 		if (tbItemCatMapper.updateByPrimaryKey(tbItemCat) != 1) {
-			throw new XmallException("添加商品分类失败");
+			throw new MallException("添加商品分类失败");
 		}
 		return 1;
 	}
@@ -119,7 +119,7 @@ public class ItemCatServiceImpl implements ItemCatService {
 		}
 		// 没有子节点直接删除
 		if (tbItemCatMapper.deleteByPrimaryKey(id) != 1) {
-			throw new XmallException("删除商品分类失败");
+			throw new MallException("删除商品分类失败");
 		}
 	}
 

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.dongnaoedu.mall.common.annotation.RateLimiter;
 import com.dongnaoedu.mall.common.constant.CommonConstant;
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.utils.IPInfoUtil;
 import com.dongnaoedu.mall.front.limit.RedisRaterLimiter;
 
@@ -51,13 +51,13 @@ public class LimitRaterInterceptor extends HandlerInterceptorAdapter {
 		// IP限流 在线Demo所需 一秒限10个请求
 		String token1 = redisRaterLimiter.acquireTokenFromBucket("XMALL" + IPInfoUtil.getIpAddr(request), 10, 1000);
 		if (StrUtil.isBlank(token1)) {
-			throw new XmallException("你手速怎么这么快，请点慢一点");
+			throw new MallException("你手速怎么这么快，请点慢一点");
 		}
 
 		if (rateLimitEnable) {
 			String token2 = redisRaterLimiter.acquireTokenFromBucket(CommonConstant.LIMIT_ALL, limit, timeout);
 			if (StrUtil.isBlank(token2)) {
-				throw new XmallException("当前访问总人数太多啦，请稍后再试");
+				throw new MallException("当前访问总人数太多啦，请稍后再试");
 			}
 		}
 
@@ -70,7 +70,7 @@ public class LimitRaterInterceptor extends HandlerInterceptorAdapter {
 			int timeout = rateLimiter.timeout();
 			String token3 = redisRaterLimiter.acquireTokenFromBucket(method.getName(), limit, timeout);
 			if (StrUtil.isBlank(token3)) {
-				throw new XmallException("当前访问人数太多啦，请稍后再试");
+				throw new MallException("当前访问人数太多啦，请稍后再试");
 			}
 		}
 		return true;

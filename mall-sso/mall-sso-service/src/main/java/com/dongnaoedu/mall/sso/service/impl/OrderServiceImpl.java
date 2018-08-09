@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.jedis.JedisClient;
 import com.dongnaoedu.mall.common.utils.IDUtil;
 import com.dongnaoedu.mall.manager.dto.DtoUtil;
@@ -141,7 +141,7 @@ public class OrderServiceImpl implements OrderService {
 
 		TbOrder tbOrder = tbOrderMapper.selectByPrimaryKey(String.valueOf(orderId));
 		if (tbOrder == null) {
-			throw new XmallException("通过id获取订单失败");
+			throw new MallException("通过id获取订单失败");
 		}
 
 		String validTime = judgeOrder(tbOrder);
@@ -206,12 +206,12 @@ public class OrderServiceImpl implements OrderService {
 
 		TbOrder tbOrder = tbOrderMapper.selectByPrimaryKey(String.valueOf(orderId));
 		if (tbOrder == null) {
-			throw new XmallException("通过id获取订单失败");
+			throw new MallException("通过id获取订单失败");
 		}
 		tbOrder.setStatus(5);
 		tbOrder.setCloseTime(new Date());
 		if (tbOrderMapper.updateByPrimaryKey(tbOrder) != 1) {
-			throw new XmallException("取消订单失败");
+			throw new MallException("取消订单失败");
 		}
 		return 1;
 	}
@@ -221,7 +221,7 @@ public class OrderServiceImpl implements OrderService {
 
 		TbMember member = tbMemberMapper.selectByPrimaryKey(Long.valueOf(orderInfo.getUserId()));
 		if (member == null) {
-			throw new XmallException("获取下单用户失败");
+			throw new MallException("获取下单用户失败");
 		}
 
 		TbOrder order = new TbOrder();
@@ -237,7 +237,7 @@ public class OrderServiceImpl implements OrderService {
 		order.setStatus(0);
 
 		if (tbOrderMapper.insert(order) != 1) {
-			throw new XmallException("生成订单失败");
+			throw new MallException("生成订单失败");
 		}
 
 		List<CartProduct> list = orderInfo.getGoodsList();
@@ -255,7 +255,7 @@ public class OrderServiceImpl implements OrderService {
 			orderItem.setTotalFee(cartProduct.getSalePrice().multiply(BigDecimal.valueOf(cartProduct.getProductNum())));
 
 			if (tbOrderItemMapper.insert(orderItem) != 1) {
-				throw new XmallException("生成订单商品失败");
+				throw new MallException("生成订单商品失败");
 			}
 
 			// 删除购物车中含该订单的商品
@@ -282,7 +282,7 @@ public class OrderServiceImpl implements OrderService {
 		orderShipping.setUpdated(new Date());
 
 		if (tbOrderShippingMapper.insert(orderShipping) != 1) {
-			throw new XmallException("生成物流信息失败");
+			throw new MallException("生成物流信息失败");
 		}
 
 		return orderId;
@@ -292,7 +292,7 @@ public class OrderServiceImpl implements OrderService {
 	public int delOrder(Long orderId) {
 
 		if (tbOrderMapper.deleteByPrimaryKey(String.valueOf(orderId)) != 1) {
-			throw new XmallException("删除订单失败");
+			throw new MallException("删除订单失败");
 		}
 
 		TbOrderItemExample example = new TbOrderItemExample();
@@ -301,12 +301,12 @@ public class OrderServiceImpl implements OrderService {
 		List<TbOrderItem> list = tbOrderItemMapper.selectByExample(example);
 		for (TbOrderItem tbOrderItem : list) {
 			if (tbOrderItemMapper.deleteByPrimaryKey(tbOrderItem.getId()) != 1) {
-				throw new XmallException("删除订单商品失败");
+				throw new MallException("删除订单商品失败");
 			}
 		}
 
 		if (tbOrderShippingMapper.deleteByPrimaryKey(String.valueOf(orderId)) != 1) {
-			throw new XmallException("删除物流失败");
+			throw new MallException("删除物流失败");
 		}
 		return 1;
 	}
@@ -323,7 +323,7 @@ public class OrderServiceImpl implements OrderService {
 			tbThanks.setUsername(tbMember.getUsername());
 		}
 		if (tbThanksMapper.insert(tbThanks) != 1) {
-			throw new XmallException("保存捐赠支付数据失败");
+			throw new MallException("保存捐赠支付数据失败");
 		}
 
 		// 设置订单为已付款
@@ -332,7 +332,7 @@ public class OrderServiceImpl implements OrderService {
 		tbOrder.setUpdateTime(new Date());
 		tbOrder.setPaymentTime(new Date());
 		if (tbOrderMapper.updateByPrimaryKey(tbOrder) != 1) {
-			throw new XmallException("更新订单失败");
+			throw new MallException("更新订单失败");
 		}
 		// 发送通知确认邮件
 		String tokenName = UUID.randomUUID().toString();
@@ -340,7 +340,7 @@ public class OrderServiceImpl implements OrderService {
 		// 设置验证token键值对 tokenName:token
 		jedisClient.set(tokenName, token);
 		jedisClient.expire(tokenName, PAY_EXPIRE);
-		emailUtil.sendEmailDealThank(EMAIL_SENDER, "【XMall商城】支付待审核处理", tokenName, token, tbThanks);
+		emailUtil.sendEmailDealThank(EMAIL_SENDER, "【Mall商城】支付待审核处理", tokenName, token, tbThanks);
 		return 1;
 	}
 
@@ -359,7 +359,7 @@ public class OrderServiceImpl implements OrderService {
 				tbOrder.setStatus(5);
 				tbOrder.setCloseTime(new Date());
 				if (tbOrderMapper.updateByPrimaryKey(tbOrder) != 1) {
-					throw new XmallException("更新订单失效失败");
+					throw new MallException("更新订单失效失败");
 				}
 			} else {
 				// 返回到期时间

@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.manager.mapper.TbAddressMapper;
 import com.dongnaoedu.mall.manager.pojo.TbAddress;
 import com.dongnaoedu.mall.manager.pojo.TbAddressExample;
@@ -31,7 +31,7 @@ public class AddressServiceImpl implements AddressService {
 		criteria.andUserIdEqualTo(userId);
 		list = tbAddressMapper.selectByExample(example);
 		if (list == null) {
-			throw new XmallException("获取默认地址列表失败");
+			throw new MallException("获取默认地址列表失败");
 		}
 
 		for (int i = 0; i < list.size(); i++) {
@@ -49,7 +49,7 @@ public class AddressServiceImpl implements AddressService {
 
 		TbAddress tbAddress = tbAddressMapper.selectByPrimaryKey(addressId);
 		if (tbAddress == null) {
-			throw new XmallException("通过id获取地址失败");
+			throw new MallException("通过id获取地址失败");
 		}
 		return tbAddress;
 	}
@@ -60,7 +60,7 @@ public class AddressServiceImpl implements AddressService {
 		// 设置唯一默认
 		setOneDefault(tbAddress);
 		if (tbAddressMapper.insert(tbAddress) != 1) {
-			throw new XmallException("添加地址失败");
+			throw new MallException("添加地址失败");
 		}
 		return 1;
 	}
@@ -71,7 +71,7 @@ public class AddressServiceImpl implements AddressService {
 		// 设置唯一默认
 		setOneDefault(tbAddress);
 		if (tbAddressMapper.updateByPrimaryKey(tbAddress) != 1) {
-			throw new XmallException("更新地址失败");
+			throw new MallException("更新地址失败");
 		}
 		return 1;
 	}
@@ -80,7 +80,7 @@ public class AddressServiceImpl implements AddressService {
 	public int delAddress(TbAddress tbAddress) {
 
 		if (tbAddressMapper.deleteByPrimaryKey(tbAddress.getAddressId()) != 1) {
-			throw new XmallException("删除地址失败");
+			throw new MallException("删除地址失败");
 		}
 		return 1;
 	}

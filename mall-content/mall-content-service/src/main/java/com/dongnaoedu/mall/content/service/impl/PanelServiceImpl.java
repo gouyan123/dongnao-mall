@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.jedis.JedisClient;
 import com.dongnaoedu.mall.common.pojo.ZTreeNode;
 import com.dongnaoedu.mall.content.service.PanelService;
@@ -42,7 +42,7 @@ public class PanelServiceImpl implements PanelService {
 
 		TbPanel tbPanel = tbPanelMapper.selectByPrimaryKey(id);
 		if (tbPanel == null) {
-			throw new XmallException("通过id获得板块失败");
+			throw new MallException("通过id获得板块失败");
 		}
 		return tbPanel;
 	}
@@ -84,7 +84,7 @@ public class PanelServiceImpl implements PanelService {
 			criteria.andTypeEqualTo(0);
 			List<TbPanel> list = tbPanelMapper.selectByExample(example);
 			if (list != null && list.size() > 0) {
-				throw new XmallException("已有轮播图板块,轮播图仅能添加1个!");
+				throw new MallException("已有轮播图板块,轮播图仅能添加1个!");
 			}
 		}
 
@@ -92,7 +92,7 @@ public class PanelServiceImpl implements PanelService {
 		tbPanel.setUpdated(new Date());
 
 		if (tbPanelMapper.insert(tbPanel) != 1) {
-			throw new XmallException("添加板块失败");
+			throw new MallException("添加板块失败");
 		}
 		// 同步缓存
 		deleteHomeRedis();
@@ -106,7 +106,7 @@ public class PanelServiceImpl implements PanelService {
 		tbPanel.setUpdated(new Date());
 
 		if (tbPanelMapper.updateByPrimaryKey(tbPanel) != 1) {
-			throw new XmallException("更新板块失败");
+			throw new MallException("更新板块失败");
 		}
 		// 同步缓存
 		deleteHomeRedis();
@@ -117,7 +117,7 @@ public class PanelServiceImpl implements PanelService {
 	public int deletePanel(int id) {
 
 		if (tbPanelMapper.deleteByPrimaryKey(id) != 1) {
-			throw new XmallException("删除内容分类失败");
+			throw new MallException("删除内容分类失败");
 		}
 		// 同步缓存
 		deleteHomeRedis();

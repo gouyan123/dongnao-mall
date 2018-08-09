@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.dongnaoedu.mall.common.exception.XmallUploadException;
+import com.dongnaoedu.mall.common.exception.MallUploadException;
 import com.dongnaoedu.mall.common.fastdfs.FastDFSClient;
 import com.dongnaoedu.mall.common.fastdfs.FastDFSFile;
 import com.dongnaoedu.mall.common.pojo.KindEditorResult;
@@ -37,7 +37,7 @@ public class ImageController {
 
 		String imagePath = null;
 		if (files.isEmpty()) {
-			throw new XmallUploadException("上次的文件不能为空");
+			throw new MallUploadException("上次的文件不能为空");
 		}
 		try {
 			imagePath = saveFile(files);

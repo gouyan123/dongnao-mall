@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.pojo.DataTablesResult;
 import com.dongnaoedu.mall.manager.mapper.TbBaseMapper;
 import com.dongnaoedu.mall.manager.mapper.TbLogMapper;
@@ -50,7 +50,7 @@ public class SystemServiceImpl implements SystemService {
 		example.setOrderByClause("sort_order");
 		List<TbShiroFilter> list = tbShiroFilterMapper.selectByExample(example);
 		if (list == null) {
-			throw new XmallException("获取shiro过滤链失败");
+			throw new MallException("获取shiro过滤链失败");
 		}
 		return list;
 	}
@@ -61,7 +61,7 @@ public class SystemServiceImpl implements SystemService {
 		TbShiroFilterExample example = new TbShiroFilterExample();
 		Long result = tbShiroFilterMapper.countByExample(example);
 		if (result == null) {
-			throw new XmallException("获取shiro过滤链数目失败");
+			throw new MallException("获取shiro过滤链数目失败");
 		}
 		return result;
 	}
@@ -71,7 +71,7 @@ public class SystemServiceImpl implements SystemService {
 	public int addShiroFilter(TbShiroFilter tbShiroFilter) {
 
 		if (tbShiroFilterMapper.insert(tbShiroFilter) != 1) {
-			throw new XmallException("添加shiro过滤链失败");
+			throw new MallException("添加shiro过滤链失败");
 		}
 		return 1;
 	}
@@ -81,7 +81,7 @@ public class SystemServiceImpl implements SystemService {
 	public int updateShiroFilter(TbShiroFilter tbShiroFilter) {
 
 		if (tbShiroFilterMapper.updateByPrimaryKey(tbShiroFilter) != 1) {
-			throw new XmallException("更新shiro过滤链失败");
+			throw new MallException("更新shiro过滤链失败");
 		}
 		return 1;
 	}
@@ -91,7 +91,7 @@ public class SystemServiceImpl implements SystemService {
 	public int deleteShiroFilter(int id) {
 
 		if (tbShiroFilterMapper.deleteByPrimaryKey(id) != 1) {
-			throw new XmallException("删除shiro过滤链失败");
+			throw new MallException("删除shiro过滤链失败");
 		}
 		return 1;
 	}
@@ -102,7 +102,7 @@ public class SystemServiceImpl implements SystemService {
 
 		TbBase tbBase = tbBaseMapper.selectByPrimaryKey(Integer.valueOf(BASE_ID));
 		if (tbBase == null) {
-			throw new XmallException("获取基础设置失败");
+			throw new MallException("获取基础设置失败");
 		}
 		return tbBase;
 	}
@@ -112,7 +112,7 @@ public class SystemServiceImpl implements SystemService {
 	public int updateBase(TbBase tbBase) {
 
 		if (tbBaseMapper.updateByPrimaryKey(tbBase) != 1) {
-			throw new XmallException("更新基础设置失败");
+			throw new MallException("更新基础设置失败");
 		}
 		return 1;
 	}
@@ -123,7 +123,7 @@ public class SystemServiceImpl implements SystemService {
 
 		List<TbOrderItem> list = tbOrderItemMapper.getWeekHot();
 		if (list == null) {
-			throw new XmallException("获取热销商品数据失败");
+			throw new MallException("获取热销商品数据失败");
 		}
 		if (list.size() == 0) {
 			TbOrderItem tbOrderItem = new TbOrderItem();
@@ -140,7 +140,7 @@ public class SystemServiceImpl implements SystemService {
 	public int addLog(TbLog tbLog) {
 
 		if (tbLogMapper.insert(tbLog) != 1) {
-			throw new XmallException("保存日志失败");
+			throw new MallException("保存日志失败");
 		}
 		return 1;
 	}
@@ -170,7 +170,7 @@ public class SystemServiceImpl implements SystemService {
 		TbLogExample example = new TbLogExample();
 		Long result = tbLogMapper.countByExample(example);
 		if (result == null) {
-			throw new XmallException("获取日志数量失败");
+			throw new MallException("获取日志数量失败");
 		}
 		return result;
 	}
@@ -180,7 +180,7 @@ public class SystemServiceImpl implements SystemService {
 	public int deleteLog(int id) {
 
 		if (tbLogMapper.deleteByPrimaryKey(id) != 1) {
-			throw new XmallException("删除日志失败");
+			throw new MallException("删除日志失败");
 		}
 		return 1;
 	}

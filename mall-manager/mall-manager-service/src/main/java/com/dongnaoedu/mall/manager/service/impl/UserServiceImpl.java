@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
-import com.dongnaoedu.mall.common.exception.XmallException;
+import com.dongnaoedu.mall.common.exception.MallException;
 import com.dongnaoedu.mall.common.pojo.DataTablesResult;
 import com.dongnaoedu.mall.manager.dto.RoleDto;
 import com.dongnaoedu.mall.manager.mapper.TbPermissionMapper;
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 			list = tbUserMapper.selectByExample(example);
 		} catch (Exception e) {
 			log.error("通过ID获取用户信息失败", e);
-			throw new XmallException("通过ID获取用户信息失败");
+			throw new MallException("通过ID获取用户信息失败");
 		}
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
 		TbRoleExample example = new TbRoleExample();
 		List<TbRole> list1 = tbRoleMapper.selectByExample(example);
 		if (list1 == null) {
-			throw new XmallException("获取角色列表失败");
+			throw new MallException("获取角色列表失败");
 		}
 		for (TbRole tbRole : list1) {
 			RoleDto roleDto = new RoleDto();
@@ -124,7 +124,7 @@ public class UserServiceImpl implements UserService {
 		TbRoleExample example = new TbRoleExample();
 		List<TbRole> list = tbRoleMapper.selectByExample(example);
 		if (list == null) {
-			throw new XmallException("获取所有角色列表失败");
+			throw new MallException("获取所有角色列表失败");
 		}
 		return list;
 	}
@@ -134,10 +134,10 @@ public class UserServiceImpl implements UserService {
 	public int addRole(TbRole tbRole) {
 
 		if (getRoleByRoleName(tbRole.getName()) != null) {
-			throw new XmallException("该角色名已存在");
+			throw new MallException("该角色名已存在");
 		}
 		if (tbRoleMapper.insert(tbRole) != 1) {
-			throw new XmallException("添加角色失败");
+			throw new MallException("添加角色失败");
 		}
 		if (tbRole.getRoles() != null) {
 			TbRole newRole = getRoleByRoleName(tbRole.getName());
@@ -146,7 +146,7 @@ public class UserServiceImpl implements UserService {
 				tbRolePerm.setRoleId(newRole.getId());
 				tbRolePerm.setPermissionId(tbRole.getRoles()[i]);
 				if (tbRolePermMapper.insert(tbRolePerm) != 1) {
-					throw new XmallException("添加角色-权限失败");
+					throw new MallException("添加角色-权限失败");
 				}
 			}
 		}
@@ -164,7 +164,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			list = tbRoleMapper.selectByExample(example);
 		} catch (Exception e) {
-			throw new XmallException("通过角色名获取角色失败");
+			throw new MallException("通过角色名获取角色失败");
 		}
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -179,7 +179,7 @@ public class UserServiceImpl implements UserService {
 		TbRole tbRole = tbRoleMapper.selectByPrimaryKey(id);
 		TbRole newRole = null;
 		if (tbRole == null) {
-			throw new XmallException("通过ID获取角色失败");
+			throw new MallException("通过ID获取角色失败");
 		}
 		if (!tbRole.getName().equals(roleName)) {
 			newRole = getRoleByRoleName(roleName);
@@ -195,10 +195,10 @@ public class UserServiceImpl implements UserService {
 	public int updateRole(TbRole tbRole) {
 
 		if (!getRoleByEditName(tbRole.getId(), tbRole.getName())) {
-			throw new XmallException("该角色名已存在");
+			throw new MallException("该角色名已存在");
 		}
 		if (tbRoleMapper.updateByPrimaryKey(tbRole) != 1) {
-			throw new XmallException("更新角色失败");
+			throw new MallException("更新角色失败");
 		}
 		if (tbRole.getRoles() != null) {
 			// 删除已有角色-权限
@@ -209,7 +209,7 @@ public class UserServiceImpl implements UserService {
 			if (list != null) {
 				for (TbRolePerm tbRolePerm : list) {
 					if (tbRolePermMapper.deleteByPrimaryKey(tbRolePerm.getId()) != 1) {
-						throw new XmallException("删除角色权限失败");
+						throw new MallException("删除角色权限失败");
 					}
 				}
 			}
@@ -220,7 +220,7 @@ public class UserServiceImpl implements UserService {
 				tbRolePerm.setPermissionId(tbRole.getRoles()[i]);
 
 				if (tbRolePermMapper.insert(tbRolePerm) != 1) {
-					throw new XmallException("编辑角色-权限失败");
+					throw new MallException("编辑角色-权限失败");
 				}
 			}
 		} else {
@@ -231,7 +231,7 @@ public class UserServiceImpl implements UserService {
 			if (list != null) {
 				for (TbRolePerm tbRolePerm : list) {
 					if (tbRolePermMapper.deleteByPrimaryKey(tbRolePerm.getId()) != 1) {
-						throw new XmallException("删除角色权限失败");
+						throw new MallException("删除角色权限失败");
 					}
 				}
 			}
@@ -245,24 +245,24 @@ public class UserServiceImpl implements UserService {
 
 		List<String> list = tbRoleMapper.getUsedRoles(id);
 		if (list == null) {
-			throw new XmallException("查询用户角色失败");
+			throw new MallException("查询用户角色失败");
 		}
 		if (list.size() > 0) {
 			return 0;
 		}
 		if (tbRoleMapper.deleteByPrimaryKey(id) != 1) {
-			throw new XmallException("删除角色失败");
+			throw new MallException("删除角色失败");
 		}
 		TbRolePermExample example = new TbRolePermExample();
 		TbRolePermExample.Criteria criteria = example.createCriteria();
 		criteria.andRoleIdEqualTo(id);
 		List<TbRolePerm> list1 = tbRolePermMapper.selectByExample(example);
 		if (list1 == null) {
-			throw new XmallException("查询角色权限失败");
+			throw new MallException("查询角色权限失败");
 		}
 		for (TbRolePerm tbRolePerm : list1) {
 			if (tbRolePermMapper.deleteByPrimaryKey(tbRolePerm.getId()) != 1) {
-				throw new XmallException("删除角色权限失败");
+				throw new MallException("删除角色权限失败");
 			}
 		}
 		return 1;
@@ -284,7 +284,7 @@ public class UserServiceImpl implements UserService {
 		TbPermissionExample example = new TbPermissionExample();
 		List<TbPermission> list = tbPermissionMapper.selectByExample(example);
 		if (list == null) {
-			throw new XmallException("获取权限列表失败");
+			throw new MallException("获取权限列表失败");
 		}
 		result.setSuccess(true);
 		result.setData(list);
@@ -296,7 +296,7 @@ public class UserServiceImpl implements UserService {
 	public int addPermission(TbPermission tbPermission) {
 
 		if (tbPermissionMapper.insert(tbPermission) != 1) {
-			throw new XmallException("添加权限失败");
+			throw new MallException("添加权限失败");
 		}
 		return 1;
 	}
@@ -306,7 +306,7 @@ public class UserServiceImpl implements UserService {
 	public int updatePermission(TbPermission tbPermission) {
 
 		if (tbPermissionMapper.updateByPrimaryKey(tbPermission) != 1) {
-			throw new XmallException("更新权限失败");
+			throw new MallException("更新权限失败");
 		}
 		return 1;
 	}
@@ -316,7 +316,7 @@ public class UserServiceImpl implements UserService {
 	public int deletePermission(int id) {
 
 		if (tbPermissionMapper.deleteByPrimaryKey(id) != 1) {
-			throw new XmallException("删除权限失败");
+			throw new MallException("删除权限失败");
 		}
 		TbRolePermExample example = new TbRolePermExample();
 		TbRolePermExample.Criteria criteria = example.createCriteria();
@@ -341,7 +341,7 @@ public class UserServiceImpl implements UserService {
 		TbUserExample example = new TbUserExample();
 		List<TbUser> list = tbUserMapper.selectByExample(example);
 		if (list == null) {
-			throw new XmallException("获取用户列表失败");
+			throw new MallException("获取用户列表失败");
 		}
 		for (TbUser tbUser : list) {
 			String names = "";
@@ -403,13 +403,13 @@ public class UserServiceImpl implements UserService {
 	public int addUser(TbUser user) {
 
 		if (!getUserByName(user.getUsername())) {
-			throw new XmallException("用户名已存在");
+			throw new MallException("用户名已存在");
 		}
 		if (!getUserByPhone(user.getPhone())) {
-			throw new XmallException("手机号已存在");
+			throw new MallException("手机号已存在");
 		}
 		if (!getUserByEmail(user.getEmail())) {
-			throw new XmallException("邮箱已存在");
+			throw new MallException("邮箱已存在");
 		}
 		String md5Pass = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
 		user.setPassword(md5Pass);
@@ -417,7 +417,7 @@ public class UserServiceImpl implements UserService {
 		user.setCreated(new Date());
 		user.setUpdated(new Date());
 		if (tbUserMapper.insert(user) != 1) {
-			throw new XmallException("添加用户失败");
+			throw new MallException("添加用户失败");
 		}
 		return 1;
 	}
@@ -428,7 +428,7 @@ public class UserServiceImpl implements UserService {
 
 		TbUser tbUser = tbUserMapper.selectByPrimaryKey(id);
 		if (tbUser == null) {
-			throw new XmallException("通过ID获取用户失败");
+			throw new MallException("通过ID获取用户失败");
 		}
 		tbUser.setPassword("");
 		return tbUser;
@@ -444,7 +444,7 @@ public class UserServiceImpl implements UserService {
 		user.setCreated(old.getCreated());
 		user.setUpdated(new Date());
 		if (tbUserMapper.updateByPrimaryKey(user) != 1) {
-			throw new XmallException("更新用户失败");
+			throw new MallException("更新用户失败");
 		}
 		return 1;
 	}
@@ -456,7 +456,7 @@ public class UserServiceImpl implements UserService {
 		tbUser.setState(state);
 		tbUser.setUpdated(new Date());
 		if (tbUserMapper.updateByPrimaryKey(tbUser) != 1) {
-			throw new XmallException("更新用户状态失败");
+			throw new MallException("更新用户状态失败");
 		}
 		return 1;
 	}
@@ -469,7 +469,7 @@ public class UserServiceImpl implements UserService {
 		String md5Pass = DigestUtils.md5DigestAsHex(tbUser.getPassword().getBytes());
 		old.setPassword(md5Pass);
 		if (tbUserMapper.updateByPrimaryKey(old) != 1) {
-			throw new XmallException("修改用户密码失败");
+			throw new MallException("修改用户密码失败");
 		}
 		return 1;
 	}
@@ -515,7 +515,7 @@ public class UserServiceImpl implements UserService {
 	public int deleteUser(Long userId) {
 
 		if (tbUserMapper.deleteByPrimaryKey(userId) != 1) {
-			throw new XmallException("删除用户失败");
+			throw new MallException("删除用户失败");
 		}
 		return 1;
 	}
