@@ -76,27 +76,27 @@
 
 ## 项目架构及功能模块图
 
-![](http://code.dongnaoedu.com/allen/dongnao-mall/raw/master/images/jiagou.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/jiagou.png)
 
-![](http://code.dongnaoedu.com/allen/dongnao-mall/raw/master/images/front-web.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/front-web.png)
 
-![](http://code.dongnaoedu.com/allen/dongnao-mall/raw/master/images/manger-web.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/manger-web.png)
 
 
 ## 运行截图
-![](http://code.dongnaoedu.com/allen/dongnao-mall/raw/master/images/%E5%B1%95%E7%A4%BA1.png)
-![](http://code.dongnaoedu.com/allen/dongnao-mall/raw/master/images/%E5%B1%95%E7%A4%BA2.png)
-![](http://code.dongnaoedu.com/allen/dongnao-mall/raw/master/images/%E5%B1%95%E7%A4%BA3.png)
-![](http://code.dongnaoedu.com/allen/dongnao-mall/raw/master/images/%E5%B1%95%E7%A4%BA4.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/展示1.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/展示2.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/展示3.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/展示4.png)
 
 
 ## Dubbox Admin 服务使用情况
-![](http://code.dongnaoedu.com/allen/dongnao-mall/raw/master/images/dubbo1.png)
-![](http://code.dongnaoedu.com/allen/dongnao-mall/raw/master/images/dubbo2.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/dubbo1.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/dubbo2.png)
 
 
 ## 任务管理器
-![](http://code.dongnaoedu.com/allen/dongnao-mall/raw/master/images/%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E5%99%A8.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/任务管理器.png)
 
 > 启动了 2 个 Tomcat 容器 ＋ 4 个 Dubbo service 服务 内存使用情况，算上虚拟机中安装的环境预计单机需要16G内存运行整个项目环境
 
