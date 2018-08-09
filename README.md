@@ -3,6 +3,7 @@
 > 后台完成所有下单支付流程，后台主要使用技术有Dubbo/SSM/Elasticsearch/Redis/MySQL/ActiveMQ/Shiro/Zookeeper等技术
 
 ----------
+
 ### 动脑学院公开课源码
 
 - [Tony老师公开课源码](http://code.dongnaoedu.com/2048209527/public-lession) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[找Tony老师聊聊人生](http://wpa.qq.com/msgrd?v=3&uin=2048209527&site=qq&menu=yes "Tony QQ")
@@ -52,49 +53,40 @@
     * [HighCharts](http://www.hcharts.cn/)：图表库
     * [不蒜子](http://busuanzi.ibruce.info/)：极简网页计数器
 	* [技术栈]：Vue2 + Vuex + Vue Router + Element UI + ES6 + webpack + axios + Node.js
-	
-## Tomcat地址(本机)
-|名称|IP|完成情况|
+
+
+## spring boot & nodejs
+
+| 名称            |IP               |
+|:---------------:|:---------------:|
+| mall-manager-web| localhost:8888  |
+| mall-front-web  | localhost:7777  |
+| mall-front      | localhost:9999  |
+
+
+## Dubbo服务地址
+
+| 服务名称         |Dubbo服务端口     |rest服务端口|
 |:---------------:|:---------------:|:---------------:|
-| Portal  |192.168.125.1:8101 |aa|
-| Search  |192.168.125.1:8102 |aa|
-| Item    |192.168.125.1:8103 |aa|
-| SSO     |192.168.125.1:8104 |aa|
-| Admin   |192.168.125.1:8105 |aa|
-| Cart    |192.168.125.1:8106 |aa|
-| Order   |192.168.125.1:8107 |aa|
-
-## Dubbox服务地址
-| 服务名称|Dubbox服务端口  |rest服务端口|
-|:---------------:|:---------------:|:---------------:|
-| Admin-Service      | 192.168.125.1:20880 |rest:8510 |
-| Redis-Service      | 192.168.125.1:20881 |rest:8511 |
-| Search-Service     | 192.168.125.1:20882 |rest:8512 |
-| Portal-Service     | 192.168.125.1:20883 |rest:8513 |
-| Item-Service       | 192.168.125.1:20884 |rest:8514 |
-| SSO-Service        | 192.168.125.1:20885 |rest:8515 |
-| Notify-Service     | 192.168.125.1:20886 |rest:8516 |
-| Cart-Service       | 192.168.125.1:20887 |rest:8517 |
-| Order-Service      | 192.168.125.1:20888 |rest:8518 |
+| mall-manager    | localhost:20880 |          |
+| mall-content    | localhost:20881 |          |
+| mall-search     | localhost:20882 |          |
+| mall-sso        | localhost:20883 |          |
 
 
-## 项目依赖(暂时)
-![20170413149208646298768.png](http://on2bs9q7q.bkt.clouddn.com/20170413149208646298768.png)
+## 项目架构及功能模块图
 
-## 结构图(暂时)
-![20170407149155166510416.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/xbin-store.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/jiagou.png)
 
-## 项目开发进度(暂时)
-![20170413149208582280568.jpg](http://on2bs9q7q.bkt.clouddn.com/20170413149208582280568.jpg)
-    
-## 实现目标
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/front-web.png)
 
-本项目最终实现的目标 [点我查看最后完成效果](https://www.jd.com)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/manger-web.png)
+
 
 ## 运行截图
-![20170320148998263242121.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/首页.png)
-![20170320148998264384011.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/登录.png)
-![201703201489982653612.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/注册.png)
+![](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/首页.png)
+![](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/登录.png)
+![](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/注册.png)
 
 * Zookeeper1    提供服务:Zookeeper
 * FastDFS1        提供服务:FastDFS Tracker
@@ -102,25 +94,27 @@
 * Redis         提供服务:Redis
 * Solr          提供服务:Solr
 
-## Dubbox Admin 服务使用情况
-![20170320148998294075274.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/Dubbox.png)
 
-## 任务管理器
+## Dubbox Admin 服务使用情况
+![](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/Dubbox.png)
+
+
+## 本地开发运行部署
 ![20170320148998292034786.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/任务管理器.png)
 
-> 启动了 5 台虚拟机＋ 7 台 Tomcat ＋ 9 个 Dubbox 服务 内存使用情况
 
 ## 常见问题
 
 1. 编译失败
-	
-	编译不成功的都是缺少jar包 麻烦配置Nexus 然后更新整个项目去下载jar包 
+
+	先在dongnao-mall/pom.xml中执行 mvn install <br>
+	编译不成功一般是缺少jar包 麻烦配置Nexus 然后更新整个项目去下载jar包 
 	在继续编译 如还失败 **请查看本地maven仓库jar是否真正下载下来**
 	
 2. 编译成功启动失败
 
 	请确保你先启动了zookeeper 并且配置对了zookeeper地址 需要连接数据的请配置好数据密码
-	service服务有启动顺序 请查看项目依赖图 看看你需要启动的服务依赖那些服务 
+	service服务有启动顺序 看看你需要启动的服务依赖那些服务 
 	
 3. 启动不了
 
