@@ -84,9 +84,10 @@
 
 
 ## 运行截图
-![](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/首页.png)
-![](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/登录.png)
-![](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/注册.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/展示1.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/展示2.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/展示3.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/展示4.png)
 
 
 ## Dubbox Admin 服务使用情况
