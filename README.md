@@ -76,7 +76,7 @@
 
 ## 项目架构及功能模块图
 
-![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/jiagou.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/raw/master/images/jiagou.png)
 
 ![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/front-web.png)
 
