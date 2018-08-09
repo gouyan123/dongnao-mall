@@ -1,82 +1,68 @@
-## xbin-store
-[![License](https://img.shields.io/badge/license-GPL-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/xubinux/xbin-store.svg?style=social&label=Stars)](https://github.com/xubinux/xbin-store)[![GitHub forks](https://img.shields.io/github/forks/xubinux/xbin-store.svg?style=social&label=Fork)](https://github.com/xubinux/xbin-store)
+## 电商项目
+> 基于SOA架构的大型开源分布式电商B2C购物商城，前后端开发分离，前台基于Vue全家桶开发。<br>
+> 后台完成所有下单支付流程，后台主要使用技术有Dubbo/SSM/Elasticsearch/Redis/MySQL/ActiveMQ/Shiro/Zookeeper等技术
 
-模仿国内知名B2C网站,实现的一个分布式B2C商城
+----------
+### 动脑学院公开课源码
 
-进群讨论 群 773130228 
+- [Tony老师公开课源码](http://code.dongnaoedu.com/2048209527/public-lession) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[找Tony老师聊聊人生](http://wpa.qq.com/msgrd?v=3&uin=2048209527&site=qq&menu=yes "Tony QQ")
 
-Dubbox 版本:
+- [Mike老师公开课源码](http://code.dongnaoedu.com/3266399810/public-lessions)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[找笑容甜美的Mike老师](http://wpa.qq.com/msgrd?v=3&uin=3266399810&site=qq&menu=yes "Mike QQ")
 
-* GitHub 地址 : https://github.com/xubinux/xbin-store
-* OSChina 地址 : http://git.oschina.net/binu/xbin-store
+- [Allen老师公开课源码](http://code.dongnaoedu.com/allen/public-lessons)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[找Allen老师聊聊](http://wpa.qq.com/msgrd?v=3&uin=3266399810&site=qq&menu=yes "Mike QQ")
 
-Spring Cloud 版本:
+----------
 
-* GitHub 地址 : https://github.com/xubinux/xbin-store-cloud
-* OSChina 地址 : http://git.oschina.net/binu/xbin-store-cloud
-
+### 前台页面为基于Vue [mall-front](http://code.dongnaoedu.com/allen/mall-front) 项目仓库查看
 
 使用技术:
 
 * 后台
-	* 使用`Spring Boot` 构建整个项目 去除 XML 配置
-	* `Maven`构建项目
-	* `Jenkins`作为持续集成
-	* 采用`Dubbox`作为RPC框架
-	* `kryo`序列化
-	* 使用 `Apollo` 配置中心
-	* 使用`Spring`+`Spring MVC`+`MyBatis`SSM框架
-	* 数据库连接池使用`druid`
-	* 数据库使用`MySQL`和`Redis`
-	* 页面引擎采用 `Beetl`
-	* 网页采用`freemarker`生成静态化页面
-	* 存储采用`FastDFS`存储图片等文件
-	* 采用`Solr`实现搜索服务
-	* `Swagger2` 生成 RESTful Apis文档
-	* 负载均衡使用`Nginx`、`keepalived`实现高可用
-	* 采用`Spring Scheduled`做任务调度
-	* 消息中间件采用`RabbitMQ`
-	* 在分布式事务上则采用了[TCC](https://github.com/changmingxie/tcc-transaction)解决订单支付方面时效性要求性高的分布式事务,可靠的消息服务则来解决如会计记录等时效性要求低的分布式事务.
+	* Spring Boot 2.x 
+	* Maven构建项目
+	* Jenkins持续集成
+	* Dubbo RPC框架
+	* Apollo统一配置中心
+	* Spring + Spring MVC + MyBatis SSM框架
+	* druid数据库连接池
+	* MySQL 关系数据库和 Redis nosql
+	* FastDFS分布式文件服务器
+	* Elasticsearch基于Lucene分布式搜索引擎
+	* Swagger2生成 RESTful Apis文档
+	* Nginx负载均衡、keepalived实现高可用
+	* tomcat8 Servlet 容器
+	* Spring Scheduled 任务调度
+	* RabbitMQ消息中间件
+	* Shiro权限管理
+	* Zookeeper分布式应用程序协调服务
+	* Docker容器
+	* TCC分布式事务
+	* Mycat数据库分库分表中间件
+	* 行为验证码
+	* Snowflake分布式id生成算法
+	* Mybatis Generator 代码生成器
 * 前台
-	* 采用基于[AdminLTE](https://github.com/almasaeed2010/AdminLTE)的[roncoo-adminLTE](https://github.com/roncoo/roncoo-adminLTE)(主要增加了Ajax的布局模式)
-	* AdminLTE集成太多Js这里就不一一列举了
+	* [H-ui](http://www.h-ui.net/)、[FlatLab](https://themeforest.net/item/flatlab-bootstrap-3-responsive-admin-template/5902687/) 静态页面支持
+    * [Ztree](http://www.treejs.cn/v3/main.php#_zTreeInfo)：jQuery树插件
+    * [DataTables](http://www.datatables.club/)：jQuery表格插件
+    * [Layer](http://layer.layui.com/)：web弹层组件
+    * [Distpicker](https://github.com/fengyuanchen/distpicker)：中国省市区地址三级联动插件
+    * [KindEditor](https://github.com/kindsoft/kindeditor)：富文本编辑器
+    * [WebUploader](http://fex.baidu.com/webuploader/getting-started.html)：百度文件上传插件
+    * [HighCharts](http://www.hcharts.cn/)：图表库
+    * [不蒜子](http://busuanzi.ibruce.info/)：极简网页计数器
+	* [技术栈]：Vue2 + Vuex + Vue Router + Element UI + ES6 + webpack + axios + Node.js
 	
-## xbin-mobile 移动端
-http://git.oschina.net/orangehs/xbin-mobile
-
-> 目前由 orange 开发,有兴趣可以联系
-
-## Pull Request
-内容可以是优化、新功能、Bug修复等。
-
-期待您的 `Pull Request`
-
-## 运行教程  <----我是教程
-[点我查看运行教程(不使用Docker)](https://github.com/xubinux/xbin-store/wiki/Tutorial-(Not-Use-Docker))
-
-[点我查看运行教程(使用Docker 暂无!)](https://github.com/xubinux/xbin-store/wiki/Tutorial-(Not-Use-Docker))
-
 ## Tomcat地址(本机)
 |名称|IP|完成情况|
 |:---------------:|:---------------:|:---------------:|
-| Portal  |192.168.125.1:8101 |[完成情况](https://github.com/xubinux/xbin-store/blob/master/xbin-store-web-portal/README.md)|
-| Search  |192.168.125.1:8102 |[完成情况](https://github.com/xubinux/xbin-store/blob/master/xbin-store-web-search/README.md)|
-| Item    |192.168.125.1:8103 |[完成情况](https://github.com/xubinux/xbin-store/blob/master/xbin-store-web-item/README.md)|
-| SSO     |192.168.125.1:8104 |[完成情况](https://github.com/xubinux/xbin-store/blob/master/xbin-store-web-sso/README.md)|
-| Admin   |192.168.125.1:8105 |[完成情况](https://github.com/xubinux/xbin-store/tree/master/xbin-store-web-admin/README.md)|
-| Cart    |192.168.125.1:8106 |[完成情况](https://github.com/xubinux/xbin-store/tree/master/xbin-store-web-cart/README.md)|
-| Order   |192.168.125.1:8107 |[完成情况](https://github.com/xubinux/xbin-store/blob/master/xbin-store-web-order/README.md)|
-| Recommended	|192.168.125.1:8109 |\|
-| AD    			|192.168.125.1:8110 |\|
-| Ranking     	|192.168.125.1:8111 |\|
-| Mymoney     	|192.168.125.1:8112 |\|
-| Pay     		|192.168.125.1:8113 |\|
-| Baitiao     	|192.168.125.1:8114 |\|
-| Coupons     	|192.168.125.1:8115 |\|
-| Seckill     	|192.168.125.1:8116 |\|
-| CS     			|192.168.125.1:8117 |\|
-| API    			|192.168.125.1:8118 |\|
+| Portal  |192.168.125.1:8101 |aa|
+| Search  |192.168.125.1:8102 |aa|
+| Item    |192.168.125.1:8103 |aa|
+| SSO     |192.168.125.1:8104 |aa|
+| Admin   |192.168.125.1:8105 |aa|
+| Cart    |192.168.125.1:8106 |aa|
+| Order   |192.168.125.1:8107 |aa|
 
 ## Dubbox服务地址
 | 服务名称|Dubbox服务端口  |rest服务端口|
@@ -90,16 +76,7 @@ http://git.oschina.net/orangehs/xbin-mobile
 | Notify-Service     | 192.168.125.1:20886 |rest:8516 |
 | Cart-Service       | 192.168.125.1:20887 |rest:8517 |
 | Order-Service      | 192.168.125.1:20888 |rest:8518 |
-| Home	-Service				|192.168.125.1:20889 |rest:8519 |
-| Recommended-Service		|192.168.125.1:20890 |rest:8520 |
-| AD-Service    			|192.168.125.1:20891 |rest:8521 |
-| Ranking-Service     	|192.168.125.1:20892 |rest:8522 |
-| Mymoney-Service     	|192.168.125.1:20893 |rest:8523 |
-| Pay-Service     			|192.168.125.1:20894 |rest:8524 |
-| Baitiao-Service     	|192.168.125.1:20895 |rest:8525 |
-| Coupons-Service     	|192.168.125.1:20896 |rest:8526 |
-| Seckill-Service     	|192.168.125.1:20897 |rest:8527 |
-| CS-Service     			|192.168.125.1:20898 |rest:8528 |
+
 
 ## 项目依赖(暂时)
 ![20170413149208646298768.png](http://on2bs9q7q.bkt.clouddn.com/20170413149208646298768.png)
@@ -118,14 +95,6 @@ http://git.oschina.net/orangehs/xbin-mobile
 ![20170320148998263242121.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/首页.png)
 ![20170320148998264384011.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/登录.png)
 ![201703201489982653612.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/注册.png)
-![20170320148998266267017.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/搜索.png)
-![20170320148998269698649.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/商品详情.png)
-![20170320148998270641283.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/加入购物车.png)
-![20170320148998271738052.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/购物车.png)
-![20170320148998272353143.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/订单确认.png)
-![20170320148998273050196.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/结算页.png)
-![20170320148998275560672.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/后台.png)
-![20170320148998297295027.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/虚拟机.png)
 
 * Zookeeper1    提供服务:Zookeeper
 * FastDFS1        提供服务:FastDFS Tracker
