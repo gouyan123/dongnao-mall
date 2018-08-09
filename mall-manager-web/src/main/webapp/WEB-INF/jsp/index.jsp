@@ -23,8 +23,8 @@
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
     <title>电商后台管理系统</title>
-    <meta name="keywords" content="电商后台管理系统，购物商城后台管理系统">
-    <meta name="description" content="电商后台管理系统，是一款电商后台管理系统。">
+    <meta name="keywords" content="${base.keyWord }">
+    <meta name="description" content="${base.description }">
 </head>
 <body>
 <header class="navbar-wrapper">

@@ -7,8 +7,8 @@
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="电商后台管理系统，购物商城后台管理系统">
-    <meta name="description" content="电商后台管理系统，是一款电商后台管理系统。">
+    <meta name="keywords" content="${base.keyWord }">
+    <meta name="description" content="${base.description }">
     <script type="application/x-javascript"> 
     	addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
     	function hideURLbar(){ window.scrollTo(0,1); } 

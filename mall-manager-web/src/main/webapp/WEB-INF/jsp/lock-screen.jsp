@@ -8,8 +8,8 @@
     <meta name="author" content="Exrick">
     <link rel="Shortcut Icon" href="icon/all.png" />
     <title>电商后台管理系统</title>
-    <meta name="keywords" content="电商后台管理系统，购物商城后台管理系统">
-    <meta name="description" content="电商后台管理系统，是一款电商后台管理系统。">
+    <meta name="keywords" content="${base.keyWord }">
+    <meta name="description" content="${base.description }">
 
     <!-- Bootstrap core CSS -->
     <link href="lib/flatlab/css/bootstrap.min.css" rel="stylesheet">

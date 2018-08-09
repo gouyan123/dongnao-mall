@@ -44,7 +44,7 @@
     <div id="print">
         <form class="form form-horizontal">
             <div>
-                <h3 class="text-c title">XMall商城订单信息</h3>
+                <h3 class="text-c title">Mall商城订单信息</h3>
                 <div class="item">会员名称：<span id="customerName"></span></div>
                 <div class="item">下单时间：<span id="createTime"></span></div>
                 <div class="item">订单编号：<span id="orderCode"></span></div>

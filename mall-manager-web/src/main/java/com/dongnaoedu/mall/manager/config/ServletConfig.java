@@ -10,11 +10,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.dongnaoedu.mall.manager.pojo.TbBase;
+import com.dongnaoedu.mall.manager.service.SystemService;
+
 @Configuration
 public class ServletConfig {
 	
 	@Autowired
 	InternalResourceViewResolver resolver;
+	
+	@Autowired
+	private SystemService systemService;
 	
 	@Value("${fdfs_url}")
     private String fdfsUrl;
@@ -22,9 +28,15 @@ public class ServletConfig {
 	// Spring 初始化的时候加载配置
     @PostConstruct
 	public void setConfigure() {
-    	Map<String, String> map = new HashMap<>();
+    	Map<String, Object> map = new HashMap<>();
     	map.put("fdfsUrl", fdfsUrl);
+    	
+    	TbBase base = systemService.getBase();
+    	map.put("base", base);
+    	
     	resolver.setAttributesMap(map);
-		System.out.println(fdfsUrl + " 加载fastdfs服务地址");
+		System.out.println(fdfsUrl + " 加载fastdfs服务地址，加载基础信息：" + base.toString());
+		
+		
 	}
 }
