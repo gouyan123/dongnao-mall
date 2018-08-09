@@ -88,20 +88,30 @@
 ![](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/登录.png)
 ![](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/注册.png)
 
-* Zookeeper1    提供服务:Zookeeper
-* FastDFS1        提供服务:FastDFS Tracker
-* FastDFS2        提供服务:FastDFS Storage
-* Redis         提供服务:Redis
-* Solr          提供服务:Solr
-
 
 ## Dubbox Admin 服务使用情况
-![](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/Dubbox.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/dubbo1.png)
+![](http://code.dongnaoedu.com/allen/dongnao-mall/blob/master/images/dubbo2.png)
+
+
+## 任务管理器
+![20170320148998292034786.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/任务管理器.png)
+
+> 启动了 5 台虚拟机＋ 7 台 Tomcat ＋ 9 个 Dubbox 服务 内存使用情况
 
 
 ## 本地开发运行部署
-![20170320148998292034786.png](https://raw.githubusercontent.com/xubinux/xbin-store/master/Images/任务管理器.png)
-
+- 下载zip直接解压或安装git后执行克隆命令 `git clone https://github.com/Exrick/xmall.git`
+- 安装各中间件并启动：[ZooKeeper](https://github.com/Exrick/xmall/blob/master/study/Zookeeper.md)、[Redis](https://github.com/Exrick/xmall/blob/master/study/Redis.md)、[ActiveMQ](https://github.com/Exrick/xmall/blob/master/study/ActiveMQ.md)、[Elasticsearch](https://github.com/Exrick/xmall/blob/master/study/Elasticsearch.md)
+- 修改各配置文件相应依赖IP配置(默认本地127.0.0.1)，以及七牛云、极验配置、天气接口在 `xmall-common - utils` 中找到修改，XPay邮箱配置在 `manager-service与sso-service` 中
+- [Maven安装和在IDEA中配置](https://github.com/Exrick/xmall/blob/master/study/Maven.md)
+- 使用IDEA([破解/免费注册](http://idea.lanyus.com/)) `File-Open` 直接打开xmall项目，点击右下角 `Import Changes` 等待安装完依赖即可
+- MySQL数据库新建 `xmall` 数据库，运行sql文件，注意在有 `db.properties` 的模块中修改你的数据库连接配置
+- 按照依赖顺序分别在每个模块文件夹根目录执行 `mvn install` 命令
+- 项目需运行除 `xmall-parent` `xmall-common` 以外其它所有6个服务，且都已配置好Tomcat插件, 执行命令 `mvn tomcat7:run` 或在IDEA中使用插件(`View - Tool Buttons - 右侧菜单Maven Projects - tomcat7 - tomcat7:run`)运行即可，当然可自行配置
+- 后端管理系统默认端口8888 http://localhost:8888 管理员账密admin|123456
+- 前端项目接口默认端口7777 前台页面请启动基于Vue的 [xmall-front](https://github.com/Exrick/xmall-front) 项目，并修改其接口配置
+- 
 
 ## 常见问题
 
