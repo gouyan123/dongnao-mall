@@ -11,7 +11,7 @@
  Target Server Version : 50722
  File Encoding         : 65001
 
- Date: 09/08/2018 14:25:14
+ Date: 09/08/2018 21:10:56
 */
 
 SET NAMES utf8mb4;
@@ -64,7 +64,7 @@ CREATE TABLE `tb_base`  (
 -- ----------------------------
 -- Records of tb_base
 -- ----------------------------
-INSERT INTO `tb_base` VALUES (1, '电商后台管理系统 v1.0', '电商后台管理系统 v1.0,购物商城后台管理系统', '电商后台管理系统 v1.0', '', '', '', '', 0, 'test login notice', 0, 'test all notice', '', '', 'http://www.dongnaoedu.com');
+INSERT INTO `tb_base` VALUES (1, '电商后台管理系统', '电商后台管理系统，Mall商城', '电商后台管理系统，Mall商城后台管理系统', '', '', '', '', 0, 'test login notice', 0, 'test all notice', '', '', 'http://www.dongnaoedu.com');
 
 -- ----------------------------
 -- Table structure for tb_dict
@@ -1440,7 +1440,7 @@ CREATE TABLE `tb_log`  (
   `time` int(11) NULL DEFAULT NULL,
   `create_date` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_log
@@ -1461,6 +1461,8 @@ INSERT INTO `tb_log` VALUES (22, '登录系统', 1, '/user/login', 'POST', '{\"p
 INSERT INTO `tb_log` VALUES (23, '登录系统', 1, '/user/login', 'POST', '{\"password\":\"你是看不见我的\",\"t\":\"1533724183614\",\"challenge\":\"13b7f575135d6fcb131eb8f62f7fd2e4gp\",\"seccode\":\"806ce86e404b29785670edc1b6333a86|jordan\",\"username\":\"admin\",\"validate\":\"806ce86e404b29785670edc1b6333a86\"}', 'admin', '0:0:0:0:0:0:0:1', '未知', 1043, '2018-08-08 18:29:44');
 INSERT INTO `tb_log` VALUES (24, '登录系统', 1, '/user/login', 'POST', '{\"password\":\"你是看不见我的\",\"t\":\"1533727197228\",\"challenge\":\"e52ece1fc3c69634f75790cceb9836058m\",\"seccode\":\"7f14debb5ba02c36859c02c503aec0d7|jordan\",\"username\":\"admin\",\"validate\":\"7f14debb5ba02c36859c02c503aec0d7\"}', 'admin', '0:0:0:0:0:0:0:1', '未知', 321, '2018-08-08 19:19:57');
 INSERT INTO `tb_log` VALUES (25, '登录系统', 1, '/user/login', 'POST', '{\"password\":\"你是看不见我的\",\"t\":\"1533736311659\",\"challenge\":\"32486605dea079aa489ab5f4081540d9ib\",\"seccode\":\"beea08c99510e4778162ecec83dbd55c|jordan\",\"username\":\"admin\",\"validate\":\"beea08c99510e4778162ecec83dbd55c\"}', 'admin', '0:0:0:0:0:0:0:1', '未知', 320, '2018-08-08 21:51:52');
+INSERT INTO `tb_log` VALUES (26, '登录系统', 1, '/user/login', 'POST', '{\"password\":\"你是看不见我的\",\"t\":\"1533804212808\",\"challenge\":\"1632b088106e388ff744bb4b2cc9f8a4d2\",\"seccode\":\"045be587d0262cf9d2abacf2bf328d21|jordan\",\"username\":\"admin\",\"validate\":\"045be587d0262cf9d2abacf2bf328d21\"}', 'admin', '0:0:0:0:0:0:0:1', '未知', 1134, '2018-08-09 16:43:33');
+INSERT INTO `tb_log` VALUES (27, '登录系统', 1, '/user/login', 'POST', '{\"password\":\"你是看不见我的\",\"t\":\"1533817136179\",\"challenge\":\"3cd4bae96862aaed9c818b3d8be249d1ja\",\"seccode\":\"54e28d7f27db5728e31562f8a34a40dc|jordan\",\"username\":\"admin\",\"validate\":\"54e28d7f27db5728e31562f8a34a40dc\"}', 'admin', '0:0:0:0:0:0:0:1', '未知', 4233, '2018-08-09 20:18:56');
 
 -- ----------------------------
 -- Table structure for tb_member
@@ -1530,7 +1532,7 @@ CREATE TABLE `tb_order`  (
 INSERT INTO `tb_order` VALUES ('150787555927616', 1.00, NULL, NULL, 5, '2017-10-13 14:19:19', '2017-10-13 14:19:19', NULL, NULL, NULL, '2017-10-13 14:19:35', NULL, NULL, 63, NULL, 'admin', NULL);
 INSERT INTO `tb_order` VALUES ('153320798119722', 1.00, NULL, NULL, 5, '2018-08-02 19:06:21', '2018-08-02 19:06:21', NULL, NULL, NULL, '2018-08-04 14:00:00', NULL, NULL, 62, NULL, 'test', NULL);
 INSERT INTO `tb_order` VALUES ('153344216497913', 99.00, NULL, NULL, 5, '2018-08-05 12:09:25', '2018-08-05 12:09:25', NULL, NULL, NULL, '2018-08-06 17:00:00', NULL, NULL, 62, NULL, 'test', NULL);
-INSERT INTO `tb_order` VALUES ('153372490250733', 99.00, NULL, NULL, 0, '2018-08-08 18:41:43', '2018-08-08 18:41:43', NULL, NULL, NULL, NULL, NULL, NULL, 62, NULL, 'test', NULL);
+INSERT INTO `tb_order` VALUES ('153372490250733', 99.00, NULL, NULL, 5, '2018-08-08 18:41:43', '2018-08-08 18:41:43', NULL, NULL, NULL, '2018-08-09 19:00:00', NULL, NULL, 62, NULL, 'test', NULL);
 
 -- ----------------------------
 -- Table structure for tb_order_item
@@ -1684,6 +1686,28 @@ INSERT INTO `tb_panel_content` VALUES (51, 7, 0, 150635087972564, 5, '', 'group1
 INSERT INTO `tb_panel_content` VALUES (55, 0, 1, NULL, 1, 'http://127.0.0.1:9999/#/goods?cid=1184', '品牌周边', NULL, NULL, '2018-07-27 20:48:21', '2018-08-05 11:54:03');
 INSERT INTO `tb_panel_content` VALUES (58, 0, 1, NULL, 2, 'http://127.0.0.1:9999/#/goods?cid=-2', '秒杀', NULL, NULL, '2018-07-27 20:50:07', '2018-08-05 11:54:10');
 INSERT INTO `tb_panel_content` VALUES (59, 0, 0, NULL, 3, 'http://www.dongnaoedu.com', '动脑学院', NULL, NULL, '2018-07-27 22:25:44', '2018-08-05 11:52:47');
+
+-- ----------------------------
+-- Table structure for tb_pay
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_pay`;
+CREATE TABLE `tb_pay`  (
+  `id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `info` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `money` decimal(10, 2) NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `state` int(2) NULL DEFAULT NULL COMMENT '显示状态 0待审核 1确认显示 2驳回 3通过不展示',
+  `pay_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL,
+  `test_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '假管理邮箱',
+  `custom` bit(1) NULL DEFAULT NULL,
+  `mobile` bit(1) NULL DEFAULT NULL,
+  `pay_num` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `device` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for tb_permission
