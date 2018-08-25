@@ -232,8 +232,8 @@ public class OrderServiceImpl implements OrderService {
 		// 发送通知邮箱
 		if (StringUtils.isNotBlank(tbThanks.getEmail()) && EmailUtil.checkEmail(tbThanks.getEmail())) {
 			String content = "您的订单已支付成功，十分感谢您的捐赠！<br>您可以在捐赠名单中查看到您的数据："
-					+ "<a href='http://xmall.exrick.cn/#/thanks'>http://xmall.exrick.cn/#/thanks</a><br>Powered By XPay. Exrick Present.";
-			emailUtil.sendEmailPayResult(tbThanks.getEmail(), "【XMall商城】支付捐赠成功通知", content);
+					+ "<a href='http://localhost:5555/#/thanks'>http://localhost:5555/#/thanks</a><br>";
+			emailUtil.sendEmailPayResult(tbThanks.getEmail(), "【电商商城】支付捐赠成功通知", content);
 		}
 		return 1;
 	}
@@ -270,8 +270,8 @@ public class OrderServiceImpl implements OrderService {
 		}
 		// 发送通知邮箱
 		if (StringUtils.isNotBlank(tbThanks.getEmail()) && EmailUtil.checkEmail(tbThanks.getEmail())) {
-			String content = "抱歉，由于您支付不起或其他原因，您的订单支付失败，请尝试重新支付！<br>Powered By XPay. Exrick Present.";
-			emailUtil.sendEmailPayResult(tbThanks.getEmail(), "【XMall商城】支付失败通知", content);
+			String content = "抱歉，由于您支付不起或其他原因，您的订单支付失败，请尝试重新支付！<br>";
+			emailUtil.sendEmailPayResult(tbThanks.getEmail(), "【电商商城】支付失败通知", content);
 		}
 		return 1;
 	}
@@ -308,9 +308,8 @@ public class OrderServiceImpl implements OrderService {
 		}
 		// 发送通知邮箱
 		if (StringUtils.isNotBlank(tbThanks.getEmail()) && EmailUtil.checkEmail(tbThanks.getEmail())) {
-			String content = "您的订单已支付成功，十分感谢您的捐赠！<br>但由于您的支付金额过低或其他原因，将不会在捐赠名单中显示，敬请谅解！"
-					+ "<br>Powered By XPay. Exrick Present.";
-			emailUtil.sendEmailPayResult(tbThanks.getEmail(), "【XMall商城】支付捐赠成功通知", content);
+			String content = "您的订单已支付成功，十分感谢您的捐赠！<br>但由于您的支付金额过低或其他原因，将不会在捐赠名单中显示，敬请谅解！<br>";
+			emailUtil.sendEmailPayResult(tbThanks.getEmail(), "【电商商城】支付捐赠成功通知", content);
 		}
 		return 1;
 	}
@@ -406,8 +405,8 @@ public class OrderServiceImpl implements OrderService {
 		}
 		// 发送通知邮箱
 		if (StringUtils.isNotBlank(tbThanks.getEmail()) && EmailUtil.checkEmail(tbThanks.getEmail())) {
-			String content = "抱歉，由于您支付不起或其他原因，您的订单支付失败，请尝试重新支付！<br>Powered By XPay. Exrick Present.";
-			emailUtil.sendEmailPayResult(tbThanks.getEmail(), "【XMall商城】支付失败通知", content);
+			String content = "抱歉，由于您支付不起或其他原因，您的订单支付失败，请尝试重新支付！<br>";
+			emailUtil.sendEmailPayResult(tbThanks.getEmail(), "【电商商城】支付失败通知", content);
 		}
 		return 1;
 	}

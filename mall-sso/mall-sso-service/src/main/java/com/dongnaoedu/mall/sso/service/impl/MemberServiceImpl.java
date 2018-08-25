@@ -2,6 +2,8 @@ package com.dongnaoedu.mall.sso.service.impl;
 
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,6 @@ import com.dongnaoedu.mall.manager.mapper.TbMemberMapper;
 import com.dongnaoedu.mall.manager.pojo.TbMember;
 import com.dongnaoedu.mall.sso.service.LoginService;
 import com.dongnaoedu.mall.sso.service.MemberService;
-import com.esotericsoftware.minlog.Log;
 import com.google.gson.Gson;
 
 /**
@@ -25,6 +26,7 @@ import com.google.gson.Gson;
  */
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
+	private static final Logger log = LoggerFactory.getLogger(MemberServiceImpl.class);
 
 	@Autowired
 	private LoginService loginService;
@@ -46,7 +48,7 @@ public class MemberServiceImpl implements MemberService {
 		String[] fileAbsolutePath = FastDFSClient.upload(file);
 		
 		if (fileAbsolutePath == null) {
-			Log.error("upload file failed,please upload again!");
+			log.error("upload file failed,please upload again!");
 			throw new MallException("上传头像失败");
 		}
 		String imgPath = fileAbsolutePath[0] + "/" + fileAbsolutePath[1];

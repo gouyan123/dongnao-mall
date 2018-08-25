@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="Exrick">
     <link rel="Shortcut Icon" href="icon/favicon.ico" />
     <meta name="keywords" content="${base.keyWord }">
     <meta name="description" content="${base.description }">
