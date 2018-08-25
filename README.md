@@ -59,9 +59,15 @@
 
 | 名称            |IP               |
 |:---------------:|:---------------:|
+| mall-front      | localhost:9999  |
 | mall-manager-web| localhost:8888  |
 | mall-front-web  | localhost:7777  |
-| mall-front      | localhost:9999  |
+| mall-manager    | localhost:8080  |
+| mall-content    | localhost:8081  |
+| mall-search     | localhost:8082  |
+| mall-sso        | localhost:8083  |
+| mall-xxl-job    | localhost:8084  |
+| mall-pay        | localhost:5555  |
 
 
 ## Dubbo服务地址
