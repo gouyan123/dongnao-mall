@@ -91,7 +91,7 @@
 			<artifactId>curator-framework</artifactId>
 		</dependency>
 
-		<!--Elasticsearch -->
+		<!-- Elasticsearch -->
 		<dependency>
 			<groupId>org.elasticsearch.client</groupId>
 			<artifactId>transport</artifactId>

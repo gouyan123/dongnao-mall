@@ -10,7 +10,7 @@ import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,7 +59,7 @@ public class SearchItemServiceImpl implements SearchItemService {
 		try {
 			Settings settings = Settings.builder().put("cluster.name", ES_CLUSTER_NAME).build();
 			TransportClient client = new PreBuiltTransportClient(settings)
-					.addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(ES_CONNECT_IP), 9300));
+					.addTransportAddress(new TransportAddress(InetAddress.getByName(ES_CONNECT_IP), 9300));
 
 			// 批量添加
 			BulkRequestBuilder bulkRequest = client.prepareBulk();
@@ -79,7 +79,7 @@ public class SearchItemServiceImpl implements SearchItemService {
 				searchItem.setProductImageBig(image);
 				bulkRequest.add(client.prepareIndex(ITEM_INDEX, ITEM_TYPE, String.valueOf(searchItem.getProductId()))
 						.setSource(jsonBuilder().startObject().field("productId", searchItem.getProductId())
-								.field("salePrice", searchItem.getSalePrice())
+								.field("salePrice", searchItem.getSalePrice()+"")
 								.field("productName", searchItem.getProductName())
 								.field("subTitle", searchItem.getSubTitle())
 								.field("productImageBig", searchItem.getProductImageBig())
