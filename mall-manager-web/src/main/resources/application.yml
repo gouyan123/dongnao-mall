@@ -27,6 +27,11 @@ spring:
   application:
     name: mall-manager-web
   # Spring boot http编码配置(CharacterEncodingFilter)
+  messages:
+    # 设置国际化配置文件存放在classpath:/i18n目录下
+    basename: i18n/messages
+    # 设定message bundles编码方式，默认为UTF-8
+    encoding: UTF-8
   http:
     encoding:
       force: true

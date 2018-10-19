@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -69,6 +70,15 @@
                             <li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
                             <li><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
                             <li><a href="javascript:;" data-val="orange" title="橙色">橙色</a></li>
+                        </ul>
+                    </li>
+                    <li id="changeLang" class="dropDown right dropDown_hover"> 
+                    	<a href="javascript:;" class="dropDown_A" title="切换语言">
+                    		<i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i>
+                    	</a>
+                        <ul class="dropDown-menu menu radius box-shadow">
+                            <li><a href="javascript:;" onClick="changeLang('zh')" data-val="zh" title="默认（中文）">切换为中文</a></li>
+                            <li><a href="javascript:;" onClick="changeLang('en')" data-val="en" title="英文">切换为英文</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -232,6 +242,16 @@
     /*个人信息*/
     function myselfinfo(){
         layer_show('管理员信息','admin-show',360,400);
+    }
+    
+    /*切换语言*/
+    function changeLang(lang) {
+    	$.get("/changeCookieLanauage?lang="+lang, function(data, status) {
+    		//alert("Data: " + data + "\nStatus: " + status);
+    		if (status == "success") {
+    			window.location.reload()
+    		}
+    	});
     }
     
     /*产品-添加*/

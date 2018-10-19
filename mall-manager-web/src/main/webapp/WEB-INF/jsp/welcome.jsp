@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,7 +127,7 @@
                                 <div class="tab-pane active" id="popular">
                                     <div style="text-align: center">
                                     <h2>
-                                    	电商项目实战课程马上开课了<br><br>
+                                    	<spring:message code="kaike" /><br><br>
                                     	详情咨询 
                                     	<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2729772006&site=qq&menu=yes">可可老师：2729772006</a>
                                     	</h2>
