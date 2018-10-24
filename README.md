@@ -116,7 +116,7 @@
 - MySQL数据库新建数据库，运行sql文件，注意在有 `application.yml` 的模块中修改你的数据库连接配置
 - 先在父项目中执行`mvn install`，以后对子项目的修改可以单独在子模块执行
 - 项目需运行除 `mall-parent` `mall-common` 以外其它所有6个服务，都可以使用spring boot的启动方式启动项目
-- 后端管理系统默认端口8888 http://localhost:8888 管理员账密admin|test
+- 后端管理系统默认端口8888 http://localhost:8888 管理员账密admin|123456
 - 前端项目接口默认端口7777 前台页面请启动基于Vue的 [mall-front](http://code.dongnaoedu.com/allen/mall-front.git) 项目，并修改其接口配置
 
 
