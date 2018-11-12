@@ -1,5 +1,6 @@
 package com.dongnaoedu.mall.job.jobhandler;
 
+import com.xxl.job.core.log.XxlJobLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class CancelOrderJobHandler extends IJobHandler {
 	public ReturnT<String> execute(String param) throws Exception {
 		
 		log.info("执行了自动取消订单定时任务");
+		XxlJobLogger.log("执行了自动取消订单定时任务");
 		orderService.cancelOrder();
 		
 		return SUCCESS;

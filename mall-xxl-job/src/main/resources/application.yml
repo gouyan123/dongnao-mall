@@ -19,7 +19,7 @@ xxl:
 
     ### xxl-job executor address
     executor: 
-      appname: xxl-job-executor-sample
+      appname: xxl-job-executor-dongnao-mall
       ip: 
       port: 9999
       ### xxl-job log path
