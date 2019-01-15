@@ -22,7 +22,7 @@ spring:
     druid:
       driver-class-name: com.mysql.jdbc.Driver
       #基本属性 url、user、password
-      url: jdbc:mysql://192.168.100.100:3306/dn_mall?characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://mysql.dn.com:3306/dn_mall?characterEncoding=utf-8&useSSL=false
       username: root
       password: root
       #配置 初始化大小、最小、最大
@@ -82,7 +82,7 @@ spring:
   redis:
     # Redis数据库索引（默认为0）
     database: 1
-    host: 192.168.100.101
+    host: redis.dn.com
     password: redis123456
     port: 6379
     # 连接超时时间 单位 ms（毫秒）
